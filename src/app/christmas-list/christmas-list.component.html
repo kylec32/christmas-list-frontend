@@ -1,0 +1,32 @@
+<md-card class="center my-content">
+  <md-card-header>
+    <md-card-title>Follow Someone New:</md-card-title>
+  </md-card-header>
+  <md-card-content>
+    <md-form-field style="width: 80%">
+      <input mdInput placeholder="Email Address" [(ngModel)]="newFollowEmail">
+    </md-form-field>
+    <button md-button color="primary" style="margin-left:30px" (click)="followNew()">
+      Follow
+    </button>
+  </md-card-content>
+</md-card>
+
+<md-card class="center my-content">
+    <md-card-header>
+        <md-card-title>Following:</md-card-title>
+    </md-card-header>
+    <md-card-content>
+    <div *ngIf="followersEmpty()" style="margin-left:30px">
+      No one!
+    </div>
+    <md-list>
+      <md-list-item *ngFor="let follow of following">
+        {{follow.userName}}
+        <button md-raised-button color="warn" style="margin-left:30px" (click)="removeFollower(follow)">
+          Disconnect
+        </button>
+      </md-list-item>
+    </md-list>
+  </md-card-content>
+</md-card>

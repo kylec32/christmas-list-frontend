@@ -1,0 +1,21 @@
+
+<md-card class="login-card center">
+  <md-card-header>
+    <md-card-title>Login</md-card-title>
+  </md-card-header>
+  <md-card-content>
+    <form class="login-form center">
+      <md-form-field class="full-width">
+        <input mdInput type="email" placeholder="Email Address" [(ngModel)]="email" name="email">
+      </md-form-field>
+      <br/>
+      <md-form-field class="full-width">
+        <input mdInput type="password"  placeholder="Password" [(ngModel)]="password" name="password">
+      </md-form-field>
+    </form>
+  </md-card-content>
+  <md-card-actions>
+    <button md-button (click)="login()" [disabled]="!allowSignIn()">Login</button>
+    <button md-button (click)="signUp()">Sign Up</button>
+  </md-card-actions>
+</md-card>
