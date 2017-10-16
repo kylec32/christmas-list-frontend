@@ -12,7 +12,10 @@ import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { AuthenticationService } from './services/authentication.service';
 import { LinkerService } from './services/linker.service';
-import { loginReducer } from './reducers/authentication.reducer';
+import { MyPresentsService } from './services/mypresents.service';
+import { token } from './reducers/authentication.reducer';
+import { following } from './reducers/connection.reducer';
+import { mypresents } from './reducers/mypresents.reducer';
 import { ChristmasListComponent } from './christmas-list/christmas-list.component';
 
 const appRoutes: Routes = [
@@ -35,7 +38,7 @@ const appRoutes: Routes = [
       appRoutes
       //,{ enableTracing: true } // <-- debugging purposes only
     ),
-    StoreModule.forRoot({ loginReducer }),
+    StoreModule.forRoot({ token, following, mypresents }),
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
@@ -46,7 +49,7 @@ const appRoutes: Routes = [
     MdSnackBarModule,
     MdListModule
   ],
-  providers: [AuthenticationService, LinkerService],
+  providers: [AuthenticationService, LinkerService, MyPresentsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

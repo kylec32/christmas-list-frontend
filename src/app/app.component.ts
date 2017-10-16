@@ -16,8 +16,8 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.store.select('loginReducer').subscribe((success) => {
-      this.loggedIn = success.key != null;
+    this.store.select('token').subscribe((success) => {
+      this.loggedIn = success != null;
     }, (error) => {
       console.log("Error");
       console.log(error);

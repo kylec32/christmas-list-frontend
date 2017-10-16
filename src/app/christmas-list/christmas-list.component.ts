@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { MdSnackBar } from '@angular/material';
+import { Observable } from 'rxjs/Rx';
 
-import { FOLLOWING_LOADED, FOLLOWEE_DELETE } from '../reducers/authentication.reducer';
+import { FOLLOWING_LOADED, FOLLOWEE_DELETE } from '../reducers/connection.reducer';
 
 import { LinkerService } from '../services/linker.service';
+import { MyPresentsService } from '../services/mypresents.service';
 
 @Component({
   selector: 'app-christmas-list',
@@ -16,12 +18,18 @@ export class ChristmasListComponent implements OnInit {
   newFollowEmail:String = "";
   following:any[] = [];
   token:String = "";
+  myPresents:Observable<Array<any>>
 
-  constructor(private store: Store<any>, private linkerService: LinkerService, private snakBar: MdSnackBar) { }
+  constructor(private store: Store<any>,
+              private linkerService: LinkerService,
+              private snakBar: MdSnackBar,
+              private myPresentsService: MyPresentsService) { 
+                  this.myPresents = this.myPresentsService.myPresents;
+              }
 
   ngOnInit() {
-    this.store.select('loginReducer').subscribe((success) => {
-      this.token = success.token;
+    this.store.select('token').subscribe((token) => {
+      this.token = token;
       //this.loadFollowing();
     }, (error) => {
       console.log("Error");
@@ -29,9 +37,10 @@ export class ChristmasListComponent implements OnInit {
     });
     
     this.loadFollowing();
+    this.myPresentsService.loadMyPresents(this.token);
 
-    this.store.select('loginReducer').subscribe((state) => {
-      this.following = state.following;
+    this.store.select('following').subscribe((following) => {
+      this.following = following;
       console.log("Reducer");
       console.log(this.following);
     }, (error) => {
