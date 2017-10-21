@@ -40,8 +40,42 @@
     <md-card-content>
     <md-list>
       <md-list-item *ngFor="let present of myPresents | async">
+        
         {{present.description}}
+        <button md-button color="primary" style="margin-left:50px" (click)="editPresent(present)">Edit</button>
+        <button md-button color="warn" style="margin-left:50px" (click)="removePresent(present.ID)">Remove</button>
       </md-list-item>
     </md-list>
+    <button md-raised-button (click)="addPresent()">New Present</button>
+  </md-card-content>
+</md-card>
+
+<br />
+
+<md-card class="center my-content">
+  <md-card-header>
+    <md-card-title>Present for others:</md-card-title>
+  </md-card-header>
+  <md-card-content>
+      <!-- <md-list> -->
+        <div *ngFor="let follower of followerPresents | async">
+          <br/>
+          {{follower.name}}
+          <br/>
+          <md-list>
+              <md-list-item *ngFor="let present of follower.presents">
+                <a [href]="present.url" *ngIf="present.url != null">
+                  {{present.description}}
+                </a>
+                <span *ngIf="present.url == null">
+                    {{present.description}}
+                </span>
+                
+                <button *ngIf="!present.purchased" md-button color="primary" style="margin-left:50px" >Mark as Purchased</button>
+                <button *ngIf="present.purchased && present.purchasedByMe" md-button color="primary" style="margin-left:50px" >Mark as Not Purchased</button>
+              </md-list-item>
+          </md-list>
+        </div>
+      <!-- </md-list> -->
   </md-card-content>
 </md-card>

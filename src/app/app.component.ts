@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { LOGOUT } from './reducers/authentication.reducer';
+import { LOGIN, LOGOUT } from './reducers/authentication.reducer';
+import { AuthenticationService } from './services/authentication.service';
 
 @Component({
   selector: 'app-root',
@@ -12,10 +14,16 @@ export class AppComponent implements OnInit {
   title = 'app';
   loggedIn: boolean = false;
 
-  constructor(private store: Store<any>) {
+  constructor(private store: Store<any>,
+              private router: Router,
+              private authenticationService: AuthenticationService) {
   }
 
   ngOnInit() {
+    if(localStorage.getItem('token') != undefined) {
+      this.store.dispatch({type: LOGIN, payload: {token: localStorage.getItem('token')}});
+    }
+
     this.store.select('token').subscribe((success) => {
       this.loggedIn = success != null;
     }, (error) => {
@@ -25,6 +33,7 @@ export class AppComponent implements OnInit {
   }
 
   logout() {
-    this.store.dispatch({type: LOGOUT});
+    this.authenticationService.logout();
+    this.router.navigate(['/']);
   }
 }

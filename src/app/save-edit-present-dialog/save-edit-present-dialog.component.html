@@ -1,0 +1,13 @@
+<h2 md-dialog-title>New Present Information</h2>
+<md-dialog-content>
+  <md-form-field style="width: 80%">
+      <input mdInput placeholder="Present Name" [(ngModel)]="name">
+  </md-form-field>
+  <md-form-field style="width: 80%">
+      <input mdInput placeholder="Link" [(ngModel)]="url">
+  </md-form-field>
+</md-dialog-content>
+<md-dialog-actions>
+  <button md-button (click)="save()" [disabled]="name.length == 0">Save</button>
+  <button md-button (click)="cancel()">Cancel</button>
+</md-dialog-actions>

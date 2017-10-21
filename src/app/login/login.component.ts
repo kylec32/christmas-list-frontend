@@ -24,7 +24,6 @@ export class LoginComponent implements OnInit {
   }
 
   signUp(){
-    console.log("clicked");
     this._router.navigate(['/signup']);
   }
 
@@ -33,8 +32,9 @@ export class LoginComponent implements OnInit {
         .subscribe((loginResult) => {
           console.log(loginResult);
           if(loginResult.found) {
+            //localStorage.setItem('token',loginResult.token);
             this.store.dispatch({type: LOGIN, payload: {token: loginResult.token}});
-            this.snakBar.open('Logging In', null, {
+            this.snakBar.open('Logged In', null, {
               duration: 2000,
             });
             this._router.navigate(['/list']);

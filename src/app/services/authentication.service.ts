@@ -1,24 +1,34 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import {Observable} from 'rxjs/Rx';
+import { LOGIN, LOGOUT } from '../reducers/authentication.reducer';
+import { Store } from '@ngrx/store';
 
 @Injectable()
 export class AuthenticationService {
 
-  constructor(private http:Http) { }
-
-  getGoogle():Observable<any> {
-    return this.http.get("http://localhost:3000/hello-world")
-                    .map((response) => response.json())
-                    .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
-  }
+  constructor(private http:Http,
+              private store:Store<any>) { }
 
 
   login(emailAddress: String, password: String):Observable<any> {
     return this.http.post("/api/verify",
                         { "emailAddress": emailAddress ,"password": password})
                         .map((response) => response.json())
+                        .map(response => {
+                              localStorage.setItem('token', response.token);
+                              return response;
+                            })
                         .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+  }
+
+  isLoggedIn():boolean {
+    return localStorage.getItem('token') != undefined && localStorage.getItem('token').length > 0;
+  }
+
+  logout():void {
+    this.store.dispatch({type: LOGOUT});
+    localStorage.removeItem('token');
   }
 
 }

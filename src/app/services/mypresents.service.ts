@@ -15,11 +15,40 @@ export class MyPresentsService {
   }
 
 
-  loadMyPresents(token: String) {
-    return this.http.get(`${this.BASE_URL}/my/presents`)
+  loadMyPresents(token: String): void {
+    this.http.get(`${this.BASE_URL}/my/presents`)
                         .map((response) => response.json())
                         .map(payload => ({ type: LOAD_MY_PRESENTS, payload }))
                         .subscribe(action => this.store.dispatch(action));
   }
+
+  newPresent(token: String, name:String, url:String):void {
+      this.http.post(`${this.BASE_URL}/my/presents`,
+                        {
+                            "description": name,
+                            "url": url
+                        })
+                        .subscribe(result => {
+                            this.loadMyPresents(token);
+                        });
+  }
+
+  removePresent(token:String, id:Number): void {
+      this.http.delete(`${this.BASE_URL}/my/presents/${id}`)
+                .subscribe(result => {
+                    this.loadMyPresents(token);
+                });
+  }
+
+  updatePresent(token:String, id:Number, name:String, url:String): void {
+    this.http.put(`${this.BASE_URL}/my/presents/${id}`,
+                {
+                    "description" : name,
+                    "url" : url
+                })
+              .subscribe(result => {
+                  this.loadMyPresents(token);
+              });
+    }
 
 }
