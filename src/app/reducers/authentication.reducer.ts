@@ -13,7 +13,6 @@ interface AppState {
 }
 
 export function token(state = null, action: ActionWithPayload<any>) {
-    console.log(action.type);
     switch (action.type) {
         case LOGIN:
             return action.payload.token;

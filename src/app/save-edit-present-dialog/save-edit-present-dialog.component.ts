@@ -15,8 +15,10 @@ export class SaveEditPresentDialogComponent implements OnInit {
               @Inject(MD_DIALOG_DATA) public data: any) { }
 
   ngOnInit() {
-    this.name = this.data.description;
-    this.url = this.data.url;
+    if(this.data != null) {
+      this.name = this.data.description.length > 0 ? this.data.description : "";
+      this.url = this.data.url.length > 0 ? this.data.url : "";
+    }
   }
 
   save():void {

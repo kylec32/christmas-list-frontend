@@ -5,7 +5,7 @@
   <md-card-content>
     <form class="login-form center">
       <md-form-field class="full-width">
-        <input mdInput placeholder="Name">
+        <input mdInput placeholder="Name" [(ngModel)] = "name" name="name">
       </md-form-field>
       <br/>
       <md-form-field class="full-width">
@@ -22,7 +22,7 @@
     </form>
   </md-card-content>
   <md-card-actions>
-    <button md-button (click)="backToLogin()" [disabled]="!canSignUp()">Back to Login</button>
-    <button md-button>Sign Up</button>
+    <button md-button (click)="backToLogin()">Back to Login</button>
+    <button md-button (click)="signUp()" [disabled]="!canSignUp()">Sign Up</button>
   </md-card-actions>
 </md-card>

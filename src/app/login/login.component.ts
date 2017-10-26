@@ -30,9 +30,10 @@ export class LoginComponent implements OnInit {
   login(){
     this.authenticationService.login(this.email, this.password)
         .subscribe((loginResult) => {
-          console.log(loginResult);
+          this.snakBar.open('Logging In', null, {
+            duration: 2000,
+          });
           if(loginResult.found) {
-            //localStorage.setItem('token',loginResult.token);
             this.store.dispatch({type: LOGIN, payload: {token: loginResult.token}});
             this.snakBar.open('Logged In', null, {
               duration: 2000,

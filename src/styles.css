@@ -14,3 +14,13 @@ body {
     margin: 0px;
     background-color: green;
 }
+.wrapper {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    /* grid-template-rows: 1fr 1fr 1fr; */
+    /* grid-auto-columns: minmax(20px, auto);
+    grid-auto-rows: minmax(20px, auto); */
+    grid-row-gap: 10px;
+    grid-column-gap: 10px;
+}
+
