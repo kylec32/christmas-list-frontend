@@ -22,6 +22,7 @@ import { ChristmasListComponent } from './components/christmas-list/christmas-li
 import { SaveEditPresentDialogComponent } from './components/save-edit-present-dialog/save-edit-present-dialog.component';
 
 import { CanActivateViaAuthGuard } from './services/authenticated.guard';
+import { MyPresentsListComponent } from './components/my-presents-list/my-presents-list.component';
 
 const appRoutes: Routes = [
   { path: '', component: LoginComponent },
@@ -41,7 +42,8 @@ const appRoutes: Routes = [
     LoginComponent,
     SignupComponent,
     ChristmasListComponent,
-    SaveEditPresentDialogComponent
+    SaveEditPresentDialogComponent,
+    MyPresentsListComponent
   ],
   entryComponents: [
     SaveEditPresentDialogComponent

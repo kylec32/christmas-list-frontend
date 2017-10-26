@@ -16,14 +16,14 @@ export class MyPresentsService extends BaseHttpService {
       this.myPresents = this.store.select("mypresents");
   }
 
-  loadMyPresents(token: String): void {
+  loadMyPresents(): void {
     this.http.get(`${this.BASE_URL}/my/presents`, super.getHeaders())
                         .map((response) => response.json())
                         .map(payload => ({ type: LOAD_MY_PRESENTS, payload }))
                         .subscribe(action => this.store.dispatch(action));
   }
 
-  newPresent(token: String, name:String, url:String):void {
+  newPresent(name:String, url:String):void {
     this.store.dispatch({type: ADD_MY_PRESENTS, payload: {description: name, url: url}});
       this.http.post(`${this.BASE_URL}/my/presents`,
                         {
@@ -31,21 +31,21 @@ export class MyPresentsService extends BaseHttpService {
                             "url": url
                         }, super.getHeaders())
                         .subscribe(result => {
-                            this.loadMyPresents(token);
+                            this.loadMyPresents();
                         });
     
   }
 
-  removePresent(token:String, id:Number): void {
+  removePresent(id:Number): void {
     this.store.dispatch({type: REMOVE_MY_PRESENTS, payload: id});
     this.http.delete(`${this.BASE_URL}/my/presents/${id}`, this.getHeaders())
                 .subscribe(result => {
-                    this.loadMyPresents(token);
+                    this.loadMyPresents();
                 });
     
   }
 
-  updatePresent(token:String, id:Number, name:String, url:String): void {
+  updatePresent(id:Number, name:String, url:String): void {
     this.store.dispatch({type: UPDATE_MY_PRESENTS, payload: {ID: id, description: name, url: url}});
     this.http.put(`${this.BASE_URL}/my/presents/${id}`,
                 {
@@ -53,7 +53,7 @@ export class MyPresentsService extends BaseHttpService {
                     "url" : url
                 }, this.getHeaders())
               .subscribe(result => {
-                  this.loadMyPresents(token);
+                  this.loadMyPresents();
               });
     }
 
