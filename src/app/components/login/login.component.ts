@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { LOGIN } from '../reducers/authentication.reducer';
-import { AuthenticationService } from '../services/authentication.service';
+import { LOGIN } from '../../reducers/authentication.reducer';
+import { AuthenticationService } from '../../services/authentication.service';
 import {MdSnackBar} from '@angular/material';
 
 @Component({

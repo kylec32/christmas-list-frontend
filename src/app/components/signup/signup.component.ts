@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { LOGIN } from '../reducers/authentication.reducer';
+import { LOGIN } from '../../reducers/authentication.reducer';
 import { MdSnackBar } from '@angular/material';
 
-import { AuthenticationService } from '../services/authentication.service';
+import { AuthenticationService } from '../../services/authentication.service';
 
 @Component({
   selector: 'app-signup',

@@ -3,13 +3,13 @@ import { Store } from '@ngrx/store';
 import { MdSnackBar, MdDialog, MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
 import { Observable } from 'rxjs/Rx';
 
-import { FOLLOWING_LOADED, FOLLOWEE_DELETE, FOLLOWING_ADD } from '../reducers/connection.reducer';
+import { FOLLOWING_LOADED, FOLLOWEE_DELETE, FOLLOWING_ADD } from '../../reducers/connection.reducer';
 
 import { SaveEditPresentDialogComponent } from '../save-edit-present-dialog/save-edit-present-dialog.component';
 
-import { LinkerService } from '../services/linker.service';
-import { MyPresentsService } from '../services/mypresents.service';
-import { PresentService } from '../services/presents.service';
+import { LinkerService } from '../../services/linker.service';
+import { MyPresentsService } from '../../services/mypresents.service';
+import { PresentService } from '../../services/presents.service';
 
 @Component({
   selector: 'app-christmas-list',

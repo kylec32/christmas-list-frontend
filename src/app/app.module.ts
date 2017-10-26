@@ -7,9 +7,9 @@ import { StoreModule } from '@ngrx/store';
 import { FormsModule }   from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
-import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
-import { SignupComponent } from './signup/signup.component';
+import { AppComponent } from './components/app/app.component';
+import { LoginComponent } from './components/login/login.component';
+import { SignupComponent } from './components/signup/signup.component';
 import { AuthenticationService } from './services/authentication.service';
 import { LinkerService } from './services/linker.service';
 import { MyPresentsService } from './services/mypresents.service';
@@ -18,8 +18,8 @@ import { token } from './reducers/authentication.reducer';
 import { following } from './reducers/connection.reducer';
 import { mypresents } from './reducers/mypresents.reducer';
 import { presents } from './reducers/present.reducer';
-import { ChristmasListComponent } from './christmas-list/christmas-list.component';
-import { SaveEditPresentDialogComponent } from './save-edit-present-dialog/save-edit-present-dialog.component';
+import { ChristmasListComponent } from './components/christmas-list/christmas-list.component';
+import { SaveEditPresentDialogComponent } from './components/save-edit-present-dialog/save-edit-present-dialog.component';
 
 import { CanActivateViaAuthGuard } from './services/authenticated.guard';
 
