@@ -45,16 +45,16 @@
       <br/>
       <md-list>
           <md-list-item *ngFor="let present of follower.presents">
-            <a [href]="present.url" *ngIf="present.url != null">
+            <a [href]="present.url" *ngIf="presentHasLink(present)">
               {{present.description}}
             </a>
-            <span *ngIf="present.url == null">
+            <span *ngIf="!presentHasLink(present) ">
                 {{present.description}}
             </span>
             
             <button *ngIf="!present.purchased" md-button color="primary" style="margin-left:auto;" (click)="markAsPurchased(present.presentId)" >Mark as Purchased</button>
             <button *ngIf="present.purchased && present.purchasedByMe" md-button color="primary" style="margin-left:auto;" (click)="unmarkAsPurchased(present.presentId)">Mark as Not Purchased</button>
-            <div style="margin-left:auto" *ngIf="present.purchased && !present.purchasedByMe"></div>
+            <div style="margin-left:auto" *ngIf="present.purchased && !present.purchasedByMe">Already Purchased</div>
           </md-list-item>
       </md-list>
     </div>

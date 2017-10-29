@@ -96,4 +96,8 @@ export class ChristmasListComponent implements OnInit {
   unmarkAsPurchased(id:Number):void {
     this.presentService.unmarkAsPurchased(id);
   }
+
+  presentHasLink(present:any):boolean {
+    return present.url != null && present.url.length > 0;
+  }
 }
