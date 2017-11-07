@@ -1,0 +1,16 @@
+.list-item {
+    display: inline-block;
+    width: calc(100% - 240px);
+}
+
+@media (max-width: 800px) {
+    .list-item {
+        display: block;
+        width:100%;
+    }
+
+    .list-item-container {
+        border-bottom: 1px solid;
+        margin-bottom: 15px;
+    }
+}

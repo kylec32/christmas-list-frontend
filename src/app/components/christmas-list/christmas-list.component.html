@@ -45,7 +45,7 @@
       <br/>
       <md-list>
           <md-list-item *ngFor="let present of follower.presents">
-            <a [href]="present.url" *ngIf="presentHasLink(present)">
+            <a [href]="present.url" target="_blank" *ngIf="presentHasLink(present)">
               {{present.description}}
             </a>
             <span *ngIf="!presentHasLink(present) ">

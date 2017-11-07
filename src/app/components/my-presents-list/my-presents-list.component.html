@@ -4,13 +4,15 @@
   </md-card-header>
   <md-card-content>
   <md-list>
-    <md-list-item *ngFor="let present of myPresents | async">
-        <p md-line>
+    <!-- <md-list-item *ngFor="let present of myPresents | async"> -->
+      <div *ngFor="let present of myPresents | async" class="list-item-container">
+        <div class="list-item">
       {{present.description}}
-        </p>
+        </div>
       <button *ngIf="present.ID != undefined" md-button color="primary" style="margin-left:auto" (click)="editPresent(present)">Edit</button>
       <button *ngIf="present.ID != undefined" md-button color="warn" style="margin-left:50px" (click)="removePresent(present.ID)">Remove</button>
-    </md-list-item>
+    </div>
+    <!-- </md-list-item> -->
   </md-list>
   <button md-raised-button (click)="addPresent()">New Present</button>
 </md-card-content>
