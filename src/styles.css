@@ -24,3 +24,34 @@ body {
     grid-column-gap: 10px;
 }
 
+.upper-right-desktop {
+    grid-column-start: 2;
+    grid-row-start: 1;
+}
+
+.bottom-right-desktop {
+    grid-column-start: 2;
+    grid-row-start: 2;
+}
+
+@media (max-width: 800px) {
+    .wrapper {
+        display: grid;
+        grid-template-columns: 1fr;
+        /* grid-template-rows: 1fr 1fr 1fr; */
+        /* grid-auto-columns: minmax(20px, auto);
+        grid-auto-rows: minmax(20px, auto); */
+        grid-row-gap: 10px;
+        grid-column-gap: 10px;
+    }
+    
+    .upper-right-desktop {
+        grid-column-start: 1;
+        grid-row-start: 1;
+    }
+    
+    .bottom-right-desktop {
+        grid-column-start: 1;
+        grid-row-start: 2;
+    }
+}
