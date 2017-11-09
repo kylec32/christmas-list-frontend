@@ -1,7 +1,7 @@
 <div class="wrapper">
 <md-card class="center my-content upper-right-desktop">
   <md-card-header>
-    <md-card-title>Follow Someone New:</md-card-title>
+    <md-card-title><b>Follow Someone New:</b></md-card-title>
   </md-card-header>
   <md-card-content>
     <md-form-field style="width: 60%">
@@ -14,7 +14,7 @@
 </md-card>
 <md-card class="center my-content bottom-right-desktop">
     <md-card-header>
-        <md-card-title>Following:</md-card-title>
+        <md-card-title><b>Following:</b></md-card-title>
     </md-card-header>
     <md-card-content>
     <div *ngIf="followersEmpty()" style="margin-left:30px">
@@ -31,33 +31,38 @@
   </md-card-content>
 </md-card>
 
-<app-my-presents-list class="center" style="width:88%">
+<app-my-presents-list class="center" style="width:92%">
 </app-my-presents-list>
 
 <md-card class="center my-content">
   <md-card-header>
-    <md-card-title>Present for others:</md-card-title>
+    <md-card-title><b>Present for others:</b></md-card-title>
   </md-card-header>
   <md-card-content>
+
     <div *ngFor="let follower of followerPresents | async">
-      <br/>
-      {{follower.name}}
-      <br/>
-      <md-list>
-          <md-list-item *ngFor="let present of follower.presents">
-            <a [href]="present.url" target="_blank" *ngIf="presentHasLink(present)">
-              {{present.description}}
-            </a>
-            <span *ngIf="!presentHasLink(present) ">
-                {{present.description}}
-            </span>
-            
-            <button *ngIf="!present.purchased" md-button color="primary" style="margin-left:auto;" (click)="markAsPurchased(present.presentId)" >Mark as Purchased</button>
-            <button *ngIf="present.purchased && present.purchasedByMe" md-button color="primary" style="margin-left:auto;" (click)="unmarkAsPurchased(present.presentId)">Mark as Not Purchased</button>
-            <div style="margin-left:auto" *ngIf="present.purchased && !present.purchasedByMe">Already Purchased</div>
-          </md-list-item>
-      </md-list>
-    </div>
+        <br/>
+        <b>{{follower.name}}</b>
+        <br/>
+        <br/>
+        <div>
+            <div class="list-item-container" *ngFor="let present of follower.presents">
+              <div class="list-item">
+                <a [href]="present.url" target="_blank" *ngIf="presentHasLink(present)">
+                  {{present.description}}
+                </a>
+                <span *ngIf="!presentHasLink(present) ">
+                    {{present.description}}
+                </span>
+              </div>
+              
+              <button *ngIf="!present.purchased" md-button color="primary" (click)="markAsPurchased(present.presentId)" >Mark as Purchased</button>
+              <button *ngIf="present.purchased && present.purchasedByMe" md-button color="primary" (click)="unmarkAsPurchased(present.presentId)">Mark as Not Purchased</button>
+              <div *ngIf="present.purchased && !present.purchasedByMe" class="already-purchased">Already Purchased</div>
+            </div>
+        </div>
+      </div>
+
   </md-card-content>
 </md-card>
 </div>
