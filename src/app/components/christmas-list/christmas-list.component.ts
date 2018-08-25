@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { MdSnackBar, MdDialog, MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
+import { MatSnackBar, MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Observable } from 'rxjs/Rx';
 
 import { FOLLOWING_LOADED, FOLLOWEE_DELETE, FOLLOWING_ADD } from '../../reducers/connection.reducer';
@@ -22,7 +22,7 @@ export class ChristmasListComponent implements OnInit {
 
   constructor(private store: Store<any>,
               private linkerService: LinkerService,
-              private snakBar: MdSnackBar,
+              private snakBar: MatSnackBar,
               private presentService: PresentService) { 
                   this.followerPresents = this.presentService.otherPresents;
               }

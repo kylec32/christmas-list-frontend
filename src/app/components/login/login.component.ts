@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { LOGIN } from '../../reducers/authentication.reducer';
 import { AuthenticationService } from '../../services/authentication.service';
-import {MdSnackBar} from '@angular/material';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
   email: String;
   password: String;
 
-  constructor(private snakBar: MdSnackBar, private _router: Router, private store: Store<any>, private authenticationService: AuthenticationService) { 
+  constructor(private snakBar: MatSnackBar, private _router: Router, private store: Store<any>, private authenticationService: AuthenticationService) { 
     this.email = "";
     this.password = "";
   }

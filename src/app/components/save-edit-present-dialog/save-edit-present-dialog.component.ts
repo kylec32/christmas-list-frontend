@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
   selector: 'app-save-edit-present-dialog',
@@ -11,8 +11,8 @@ export class SaveEditPresentDialogComponent implements OnInit {
   public name:String = "";
   public url:String = "";
 
-  constructor(private dialogRef: MdDialogRef<SaveEditPresentDialogComponent>,
-              @Inject(MD_DIALOG_DATA) public data: any) { }
+  constructor(private dialogRef: MatDialogRef<SaveEditPresentDialogComponent>,
+              @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit() {
     if(this.data != null) {

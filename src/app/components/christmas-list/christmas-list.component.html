@@ -1,44 +1,44 @@
 <div class="wrapper">
-<md-card class="center my-content upper-right-desktop">
-  <md-card-header>
-    <md-card-title><b>Follow Someone New:</b></md-card-title>
-  </md-card-header>
-  <md-card-content>
-    <md-form-field style="width: 60%">
-      <input mdInput placeholder="Email Address" [(ngModel)]="newFollowEmail">
-    </md-form-field>
-    <button md-button color="primary" style="margin-left:30px" (click)="followNew()">
+<mat-card class="center my-content upper-right-desktop">
+  <mat-card-header>
+    <mat-card-title><b>Follow Someone New:</b></mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-form-field style="width: 60%">
+      <input matInput placeholder="Email Address" [(ngModel)]="newFollowEmail">
+    </mat-form-field>
+    <button mat-button color="primary" style="margin-left:30px" (click)="followNew()">
       Follow
     </button>
-  </md-card-content>
-</md-card>
-<md-card class="center my-content bottom-right-desktop">
-    <md-card-header>
-        <md-card-title><b>Following:</b></md-card-title>
-    </md-card-header>
-    <md-card-content>
+  </mat-card-content>
+</mat-card>
+<mat-card class="center my-content bottom-right-desktop">
+    <mat-card-header>
+        <mat-card-title><b>Following:</b></mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
     <div *ngIf="followersEmpty()" style="margin-left:30px">
       No one!
     </div>
-    <md-list>
-      <md-list-item *ngFor="let follow of following">
+    <mat-list>
+      <mat-list-item *ngFor="let follow of following">
         {{follow.userName}}
-        <button *ngIf="follow.ID != undefined" md-raised-button color="warn" style="margin-left:auto" (click)="removeFollower(follow)">
+        <button *ngIf="follow.ID != undefined" mat-raised-button color="warn" style="margin-left:auto" (click)="removeFollower(follow)">
           Disconnect
         </button>
-      </md-list-item>
-    </md-list>
-  </md-card-content>
-</md-card>
+      </mat-list-item>
+    </mat-list>
+  </mat-card-content>
+</mat-card>
 
 <app-my-presents-list class="center" style="width:92%">
 </app-my-presents-list>
 
-<md-card class="center my-content">
-  <md-card-header>
-    <md-card-title><b>Present for others:</b></md-card-title>
-  </md-card-header>
-  <md-card-content>
+<mat-card class="center my-content">
+  <mat-card-header>
+    <mat-card-title><b>Present for others:</b></mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
 
     <div *ngFor="let follower of followerPresents | async">
         <br/>
@@ -56,13 +56,13 @@
                 </span>
               </div>
               
-              <button *ngIf="!present.purchased" md-button color="primary" (click)="markAsPurchased(present.presentId)" >Mark as Purchased</button>
-              <button *ngIf="present.purchased && present.purchasedByMe" md-button color="primary" (click)="unmarkAsPurchased(present.presentId)">Mark as Not Purchased</button>
+              <button *ngIf="!present.purchased" mat-button color="primary" (click)="markAsPurchased(present.presentId)" >Mark as Purchased</button>
+              <button *ngIf="present.purchased && present.purchasedByMe" mat-button color="primary" (click)="unmarkAsPurchased(present.presentId)">Mark as Not Purchased</button>
               <div *ngIf="present.purchased && !present.purchasedByMe" class="already-purchased">Already Purchased</div>
             </div>
         </div>
       </div>
 
-  </md-card-content>
-</md-card>
+  </mat-card-content>
+</mat-card>
 </div>

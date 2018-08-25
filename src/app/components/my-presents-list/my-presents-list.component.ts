@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
-import { MdSnackBar, MdDialog, MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
+import { MatSnackBar, MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 import { MyPresentsService } from '../../services/mypresents.service';
 
@@ -16,8 +16,8 @@ export class MyPresentsListComponent implements OnInit {
   myPresents:Observable<Array<any>>;
 
   constructor(private myPresentsService: MyPresentsService,
-              private dialog: MdDialog,
-              private snakBar: MdSnackBar) {
+              private dialog: MatDialog,
+              private snakBar: MatSnackBar) {
     this.myPresents = this.myPresentsService.myPresents;
    }
 

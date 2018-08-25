@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { LOGIN } from '../../reducers/authentication.reducer';
-import { MdSnackBar } from '@angular/material';
+import { MatSnackBar } from '@angular/material';
 
 import { AuthenticationService } from '../../services/authentication.service';
 
@@ -20,7 +20,7 @@ export class SignupComponent implements OnInit {
 
   constructor(private router: Router,
               private authenticationService: AuthenticationService,
-              private snackBar: MdSnackBar,
+              private snackBar: MatSnackBar,
               private store: Store<any>) { }
 
   ngOnInit() {

@@ -1,8 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router'
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-import { MdButtonModule, MdCardModule, MdInputModule, MdSnackBarModule, MdListModule, MdDialogModule } from '@angular/material';
+import { MatButtonModule, MatCardModule, MatInputModule, MatSnackBarModule, MatListModule, MatDialogModule } from '@angular/material';
 import { StoreModule } from '@ngrx/store';
 import { FormsModule }   from '@angular/forms';
 import { HttpModule } from '@angular/http';
@@ -57,19 +57,19 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     FormsModule,
     HttpModule,
-    MdButtonModule,
-    MdInputModule,
-    MdCardModule,
-    MdSnackBarModule,
-    MdListModule,
-    MdDialogModule
+    MatButtonModule,
+    MatInputModule,
+    MatCardModule,
+    MatSnackBarModule,
+    MatListModule,
+    MatDialogModule
   ],
   providers: [AuthenticationService,
               LinkerService,
               MyPresentsService,
               PresentService,
               CanActivateViaAuthGuard,
-              MdDialogModule],
+              MatDialogModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
