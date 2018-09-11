@@ -1,39 +1,50 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
 import { BaseHttpService } from './base-http.service';
-import {Observable} from 'rxjs/Rx';
-import { LOGIN, LOGOUT } from '../reducers/authentication.reducer';
+import { Observable } from 'rxjs/Rx';
+import { LOGOUT } from '../reducers/authentication.reducer';
 import { Store } from '@ngrx/store';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class AuthenticationService extends BaseHttpService {
 
-  constructor(private http:Http,
+  private NEW_URL = "https://nv372hias4.execute-api.us-east-1.amazonaws.com/dev";
+
+  constructor(private httpClient:HttpClient,
               private store:Store<any>) {
                 super();
+                store.select('token').subscribe((token) => {
+                  if(token != undefined) {
+                    localStorage.setItem('token', token);
+                  }
+                });
                }
 
 
   login(emailAddress: String, password: String):Observable<any> {
-    return this.http.post(`${this.BASE_URL}/verify`,
-                        { "emailAddress": emailAddress ,"password": password})
-                        .map((response) => response.json())
-                        .map(response => {
-                              localStorage.setItem('token', response.token);
-                              return response;
-                            })
-                        .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+    return this.httpClient.post(`${this.NEW_URL}/sign-in`,
+                                  {
+                                    "emailAddress": emailAddress,
+                                    "password": password
+                                  });
   }
 
   isLoggedIn():boolean {
-    return localStorage.getItem('token') != undefined && localStorage.getItem('token').length > 0;
+    return localStorage.getItem('token') != undefined
+            && localStorage.getItem('token').length > 0;
   }
 
-  signUp(name:String, emailAddress:String, password:String): Observable<any> {
-    return this.http.post(`${this.BASE_URL}/user`, {"name": name, "emailAddress": emailAddress, "password": password})
-            .map(response => response.json())
-            .catch(error => error.json());
-
+  signUp(firstName:String, lastName:String, emailAddress:String, password:String): Observable<any> {
+    return this.httpClient.post(`${this.NEW_URL}/sign-up`,
+                                  {
+                                    "firstName": firstName,
+                                    "lastName": lastName,
+                                    "emailAddress": emailAddress,
+                                    "username": emailAddress,
+                                    "password": password
+                                  },
+                                  { observe: 'response' }
+                                );
   }
 
   logout():void {

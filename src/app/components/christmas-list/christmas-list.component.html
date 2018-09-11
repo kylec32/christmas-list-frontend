@@ -22,8 +22,8 @@
     </div>
     <mat-list>
       <mat-list-item *ngFor="let follow of following">
-        {{follow.userName}}
-        <button *ngIf="follow.ID != undefined" mat-raised-button color="warn" style="margin-left:auto" (click)="removeFollower(follow)">
+        {{follow.name}}
+        <button *ngIf="follow.id != undefined" mat-raised-button color="warn" style="margin-left:auto" (click)="removeFollower(follow)">
           Disconnect
         </button>
       </mat-list-item>

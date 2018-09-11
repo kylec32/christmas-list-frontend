@@ -22,7 +22,7 @@ export class MyPresentsListComponent implements OnInit {
    }
 
   ngOnInit() {
-    this.myPresentsService.loadMyPresents();
+    //this.myPresentsService.loadMyPresents();
   }
 
   addPresent():void {

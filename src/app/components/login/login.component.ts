@@ -31,11 +31,11 @@ export class LoginComponent implements OnInit {
   }
 
   login(){
+    this.snakBar.open('Logging In', null, {
+      duration: 2000,
+    });
     this.authenticationService.login(this.email, this.password)
         .subscribe((loginResult) => {
-          this.snakBar.open('Logging In', null, {
-            duration: 2000,
-          });
           if(loginResult.found) {
             this.store.dispatch({type: LOGIN, payload: {token: loginResult.token}});
             this.snakBar.open('Logged In', null, {

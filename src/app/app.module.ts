@@ -6,6 +6,8 @@ import { MatButtonModule, MatCardModule, MatInputModule, MatSnackBarModule, MatL
 import { StoreModule } from '@ngrx/store';
 import { FormsModule }   from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { AppComponent } from './components/app/app.component';
 import { LoginComponent } from './components/login/login.component';
@@ -23,6 +25,8 @@ import { SaveEditPresentDialogComponent } from './components/save-edit-present-d
 
 import { CanActivateViaAuthGuard } from './services/authenticated.guard';
 import { MyPresentsListComponent } from './components/my-presents-list/my-presents-list.component';
+
+import { environment } from '../environments/environment';
 
 const appRoutes: Routes = [
   { path: '', component: LoginComponent },
@@ -53,10 +57,15 @@ const appRoutes: Routes = [
       //,{ enableTracing: true } // <-- debugging purposes only
     ),
     StoreModule.forRoot({ token, following, mypresents, presents }),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25, // Retains last 25 states
+      logOnly: environment.production,
+    }),
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
     HttpModule,
+    HttpClientModule,
     MatButtonModule,
     MatInputModule,
     MatCardModule,

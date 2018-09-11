@@ -16,7 +16,8 @@ export class SignupComponent implements OnInit {
   emailAddress: String = "";
   password: String = "";
   passwordAgain: String = "";
-  name:String = "";
+  firstName:String = "";
+  lastName:String = "";
 
   constructor(private router: Router,
               private authenticationService: AuthenticationService,
@@ -27,14 +28,18 @@ export class SignupComponent implements OnInit {
   }
 
   canSignUp(): boolean {
-    return this.emailAddress.length > 0 && this.password.length > 0 && this.passwordAgain === this.password;
+    return this.firstName.length > 0
+            && this.lastName.length > 0
+            && this.emailAddress.length > 0
+            && this.password.length > 0
+            && this.passwordAgain === this.password;
   }
 
   signUp():void {
     this.snackBar.open('Signing Up', null, {
       duration: 2000,
     });
-    this.authenticationService.signUp(this.name, this.emailAddress, this.password)
+    this.authenticationService.signUp(this.firstName, this.lastName, this.emailAddress, this.password)
         .subscribe(response => {
           this.authenticationService.login(this.emailAddress, this.password)
             .subscribe(loginResponse => {
@@ -44,6 +49,9 @@ export class SignupComponent implements OnInit {
               });
               this.router.navigate(['/list']);
             });
+        },
+        error => {
+          this.snackBar.open(`User Already Exists: ${this.emailAddress}`, null, { duration: 2000});
         });
   }
 
@@ -52,7 +60,8 @@ export class SignupComponent implements OnInit {
   }
 
   private clearForm(): void {
-    this.name = "";
+    this.firstName = "";
+    this.lastName = "";
     this.emailAddress = "";
     this.password = "";
     this.passwordAgain = "";

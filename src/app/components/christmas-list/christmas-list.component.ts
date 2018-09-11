@@ -30,9 +30,10 @@ export class ChristmasListComponent implements OnInit {
   ngOnInit() {
     
     this.loadFollowing();
-    this.presentService.loadOtherPresents();
+    //this.presentService.loadOtherPresents();
 
     this.store.select('following').subscribe((following) => {
+      console.log(following);
       this.following = following;
     }, (error) => {
       console.log(error);
@@ -42,7 +43,7 @@ export class ChristmasListComponent implements OnInit {
   loadFollowing() {
     this.linkerService.getFollowed(this.token)
         .subscribe((following) => {
-          this.store.dispatch({type: FOLLOWING_LOADED, payload: {following: following}});
+          this.store.dispatch({type: FOLLOWING_LOADED, payload: {following: following.followees}});
         }, (err) => {
           this.snakBar.open('Issue Getting Following List', null, {
             duration: 2000,
@@ -52,15 +53,15 @@ export class ChristmasListComponent implements OnInit {
 
   removeFollower(followee) {
     this.store.dispatch({type: FOLLOWEE_DELETE, payload: {toDelete: followee}});
-    this.linkerService.disconnectFollowee(this.token, followee.ID)
+    this.linkerService.disconnectFollowee(this.token, followee.id)
         .subscribe((removeResult) => {
-          this.snakBar.open(`Successfully disconnected from: ${followee.userName}`
+          this.snakBar.open(`Successfully disconnected from: ${followee.name}`
                               , null
                               , { duration: 2000 });
-          this.loadFollowing();
+          setTimeout(() => this.loadFollowing(), 1000);
         }, (error) => {
           this.loadFollowing();
-          this.snakBar.open(`Issue dissconnecting from: ${followee.userName}`, null, {
+          this.snakBar.open(`Issue dissconnecting from: ${followee.name}`, null, {
             duration: 2000,
           });
         });
@@ -68,14 +69,14 @@ export class ChristmasListComponent implements OnInit {
 
   followNew() {
     const email = this.newFollowEmail;
-    this.store.dispatch({type: FOLLOWING_ADD, payload:{"userName": email}});
+    this.store.dispatch({type: FOLLOWING_ADD, payload:{"name": email}});
     this.linkerService.followNew(this.token, email)
           .subscribe((addResult) => {
             this.snakBar.open(`Successfully added: ${email}`
             , null
             , { duration: 2000 });
-
-            this.loadFollowing();
+            
+            setTimeout(() => this.loadFollowing(), 1000);
           }, (error) => {
             this.loadFollowing();
             this.snakBar.open(`Couldn't find account for: ${email}`, null, {
