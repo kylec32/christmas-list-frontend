@@ -22,7 +22,7 @@ export class MyPresentsListComponent implements OnInit {
    }
 
   ngOnInit() {
-    //this.myPresentsService.loadMyPresents();
+    this.myPresentsService.loadMyPresents();
   }
 
   addPresent():void {
@@ -35,13 +35,13 @@ export class MyPresentsListComponent implements OnInit {
     });
   }
 
-  removePresent(id:Number):void {
+  removePresent(id:string):void {
     this.myPresentsService.removePresent(id);
   }
 
   editPresent(present:any):void {
     let dialogRef = this.dialog.open(SaveEditPresentDialogComponent,{
-                data: {"description": present.description
+                data: {"description": present.title
                       , "url": present.url}
               });
     

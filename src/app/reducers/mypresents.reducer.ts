@@ -16,7 +16,7 @@ export function mypresents(state = [], action: ActionWithPayload<any>) {
         case ADD_MY_PRESENTS:
             return [...state, action.payload];
         case REMOVE_MY_PRESENTS:
-            return state.filter((present) => { return present.ID != action.payload; } );
+            return state.filter((present) => { return present.id != action.payload; } );
         case UPDATE_MY_PRESENTS:
             return [...state.filter((present) => {
                 return present.ID != action.payload.ID;

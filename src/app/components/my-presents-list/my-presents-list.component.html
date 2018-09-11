@@ -3,13 +3,13 @@
       <mat-card-title><b>My List</b></mat-card-title>
   </mat-card-header>
   <mat-card-content>
-  <mat-list>
+  <mat-list role="list">
     <div *ngFor="let present of myPresents | async" class="list-item-container">
-        <div class="list-item">
-          {{present.description}}
-        </div>
-      <button *ngIf="present.ID != undefined" mat-button color="primary" (click)="editPresent(present)">Edit</button>
-      <button *ngIf="present.ID != undefined" mat-button color="warn" style="margin-left:50px" (click)="removePresent(present.ID)">Remove</button>
+      <mat-list-item role="listitem">
+          {{present.title}}
+      </mat-list-item>
+      <button *ngIf="present.id != undefined" mat-button color="primary" (click)="editPresent(present)">Edit</button>
+      <button *ngIf="present.id != undefined" mat-button color="warn" style="margin-left:50px" (click)="removePresent(present.id)">Remove</button>
     </div>
   </mat-list>
   <button mat-raised-button (click)="addPresent()">New Present</button>
