@@ -47,7 +47,7 @@ export class MyPresentsListComponent implements OnInit {
     
     dialogRef.afterClosed().subscribe(data => {
       if(!data.cancelled) {
-        this.myPresentsService.updatePresent(present.ID, data.name, data.url);
+        this.myPresentsService.updatePresent(present.id, data.name, data.url);
       }
     });
   }

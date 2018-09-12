@@ -19,7 +19,7 @@ export function mypresents(state = [], action: ActionWithPayload<any>) {
             return state.filter((present) => { return present.id != action.payload; } );
         case UPDATE_MY_PRESENTS:
             return [...state.filter((present) => {
-                return present.ID != action.payload.ID;
+                return present.id != action.payload.id;
             }), action.payload];
         default:
             return state;

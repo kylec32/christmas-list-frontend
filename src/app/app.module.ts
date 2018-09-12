@@ -6,7 +6,7 @@ import { MatButtonModule, MatCardModule, MatInputModule, MatSnackBarModule, MatL
 import { StoreModule } from '@ngrx/store';
 import { FormsModule }   from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { AppComponent } from './components/app/app.component';
@@ -24,6 +24,7 @@ import { ChristmasListComponent } from './components/christmas-list/christmas-li
 import { SaveEditPresentDialogComponent } from './components/save-edit-present-dialog/save-edit-present-dialog.component';
 
 import { CanActivateViaAuthGuard } from './services/authenticated.guard';
+import { AddAuthenticationHeaderInterceptor } from './services/injector/add-auth-header.service';
 import { MyPresentsListComponent } from './components/my-presents-list/my-presents-list.component';
 
 import { environment } from '../environments/environment';
@@ -78,7 +79,12 @@ const appRoutes: Routes = [
               MyPresentsService,
               PresentService,
               CanActivateViaAuthGuard,
-              MatDialogModule],
+              MatDialogModule,
+              {
+                provide: HTTP_INTERCEPTORS,
+                useClass: AddAuthenticationHeaderInterceptor,
+                multi: true
+            }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

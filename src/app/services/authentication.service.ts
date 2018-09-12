@@ -8,8 +8,6 @@ import { HttpClient } from '@angular/common/http';
 @Injectable()
 export class AuthenticationService extends BaseHttpService {
 
-  private NEW_URL = "https://nv372hias4.execute-api.us-east-1.amazonaws.com/dev";
-
   constructor(private httpClient:HttpClient,
               private store:Store<any>) {
                 super();
