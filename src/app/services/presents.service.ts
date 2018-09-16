@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Rx';
 import { Store } from '@ngrx/store';
 import { LOAD_OTHER_PRESENTS, SET_AS_PURCHASED, UNSET_AS_PURCHASED } from '../reducers/present.reducer';
@@ -12,7 +13,9 @@ export class PresentService extends BaseHttpService {
 
     otherPresents:Observable<Array<any>>;
 
-    constructor(private http:Http, private store: Store<any>) { 
+    constructor(private http:Http,
+                private store: Store<any>,
+                private httpClient: HttpClient) { 
         super();
         this.otherPresents = this.store.select("presents");
         this.store.select('following')
@@ -22,22 +25,20 @@ export class PresentService extends BaseHttpService {
     }
 
     loadOtherPresents():void {
-        this.http.get(`${this.BASE_URL}/presents`, super.getHeaders())
-                    .map(response => response.json())
-                    .map(payload => ({type:LOAD_OTHER_PRESENTS, payload: payload}))
-                    .subscribe(action => this.store.dispatch(action));
+        this.httpClient.get(`${this.NEW_URL}/presents`)
+                        .subscribe(payload => this.store.dispatch({type:LOAD_OTHER_PRESENTS, payload: payload}));
     }
 
-    markAsPurchased(id:Number):void {
-        this.store.dispatch({type: SET_AS_PURCHASED, payload:id});
-        this.http.post(`${this.BASE_URL}/presents/${id}`,[], super.getHeaders())
-                .subscribe(result => this.loadOtherPresents());
+    markAsPurchased(targetUserId: string, presentId: any):void {
+        this.store.dispatch({type: SET_AS_PURCHASED, payload:presentId});
+        // this.httpClient.post(`${this.BASE_URL}/presents/${targetUserId}/${presentId}`,[])
+        //         .subscribe(result => this.loadOtherPresents());
     }
 
-    unmarkAsPurchased(id:Number):void {
-        this.store.dispatch({type: UNSET_AS_PURCHASED, payload:id});
-        this.http.delete(`${this.BASE_URL}/presents/${id}`, super.getHeaders())
-                    .subscribe(result => this.loadOtherPresents());
+    unmarkAsPurchased(targetUserId: string, presentId: string):void {
+        this.store.dispatch({type: UNSET_AS_PURCHASED, payload:presentId});
+        // this.httpClient.delete(`${this.BASE_URL}/presents/${targetUserId}/${presentId}`)
+        //             .subscribe(result => this.loadOtherPresents());
     }
 
 }    

@@ -90,12 +90,12 @@ export class ChristmasListComponent implements OnInit {
     return typeof(this.following) == "undefined" || this.following.length == 0;
   }
 
-  markAsPurchased(id:Number):void {
-    this.presentService.markAsPurchased(id);
+  markAsPurchased(targetUsrId:string, presentId: string):void {
+    this.presentService.markAsPurchased(targetUsrId, presentId);
   }
 
-  unmarkAsPurchased(id:Number):void {
-    this.presentService.unmarkAsPurchased(id);
+  unmarkAsPurchased(targetUsrId:string, presentId: string):void {
+    this.presentService.unmarkAsPurchased(targetUsrId, presentId);
   }
 
   presentHasLink(present:any):boolean {
