@@ -15,10 +15,9 @@ export function presents(state = [], action: ActionWithPayload<any>) {
         case SET_AS_PURCHASED:
             return state.map((item) => {
                 item.presents = item.presents.map((present) => {
-                    //debugger;
-                                                    present.purchasedByUser = present.id == action.payload ? true : present.purchasedByUser;
-                                                    present.purchased = present.id == action.payload ? true : present.purchased;
-                                                    return present;
+                                present.purchasedByUser = present.id == action.payload ? true : present.purchasedByUser;
+                                present.purchased = present.id == action.payload ? true : present.purchased;
+                                return present;
                 });	
             
                 return item;
@@ -26,9 +25,9 @@ export function presents(state = [], action: ActionWithPayload<any>) {
         case UNSET_AS_PURCHASED:
             return state.map((item) => {
                 item.presents = item.presents.map((present) => {
-                                                    present.purchasedByUser = present.id == action.payload ? false : present.purchasedByUser;
-                                                    present.purchased = present.id == action.payload ? false : present.purchased;
-                                                    return present;
+                                present.purchasedByUser = present.id == action.payload ? false : present.purchasedByUser;
+                                present.purchased = present.id == action.payload ? false : present.purchased;
+                                return present;
                 });	
             
                 return item;

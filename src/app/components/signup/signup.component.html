@@ -23,6 +23,7 @@
       <mat-form-field class="full-width">
         <input matInput type="password"  placeholder="Confirm Password" [(ngModel)] = "passwordAgain" name="passwordAgain">
       </mat-form-field>
+      <re-captcha #captchaRef="reCaptcha" (resolved)="resolved($event)" siteKey="6LfffXAUAAAAAAMOzpKDhXhgfMKCzQNCdSay1I7O"></re-captcha>
     </form>
   </mat-card-content>
   <mat-card-actions>

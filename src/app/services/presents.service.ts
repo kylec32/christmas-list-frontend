@@ -25,20 +25,20 @@ export class PresentService extends BaseHttpService {
     }
 
     loadOtherPresents():void {
-        this.httpClient.get(`${this.NEW_URL}/presents`)
+        this.httpClient.get(`${this.BASE_URL}/presents`)
                         .subscribe(payload => this.store.dispatch({type:LOAD_OTHER_PRESENTS, payload: payload}));
     }
 
     markAsPurchased(targetUserId: string, presentId: any):void {
         this.store.dispatch({type: SET_AS_PURCHASED, payload:presentId});
-        // this.httpClient.post(`${this.BASE_URL}/presents/${targetUserId}/${presentId}`,[])
-        //         .subscribe(result => this.loadOtherPresents());
+        this.httpClient.put(`${this.BASE_URL}/presents/${targetUserId}/${presentId}/purchased`,[])
+                .subscribe(result => setTimeout(() => this.loadOtherPresents(), 10000));
     }
 
     unmarkAsPurchased(targetUserId: string, presentId: string):void {
         this.store.dispatch({type: UNSET_AS_PURCHASED, payload:presentId});
-        // this.httpClient.delete(`${this.BASE_URL}/presents/${targetUserId}/${presentId}`)
-        //             .subscribe(result => this.loadOtherPresents());
+        this.httpClient.delete(`${this.BASE_URL}/presents/${targetUserId}/${presentId}/purchased`)
+                    .subscribe(result => setTimeout(() => this.loadOtherPresents(), 10000));
     }
 
 }    

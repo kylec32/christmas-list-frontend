@@ -18,13 +18,13 @@ export class MyPresentsService extends BaseHttpService {
   }
 
   loadMyPresents(): void {
-    this.httpClient.get(`${this.NEW_URL}/my/presents`)
+    this.httpClient.get(`${this.BASE_URL}/my/presents`)
                         .subscribe(payload => this.store.dispatch({ type: LOAD_MY_PRESENTS, payload }));
   }
 
   newPresent(name:String, url:String):void {
     this.store.dispatch({type: ADD_MY_PRESENTS, payload: {title: name, url: url}});
-    this.httpClient.post(`${this.NEW_URL}/my/presents`,
+    this.httpClient.post(`${this.BASE_URL}/my/presents`,
                             {
                                 "title": name,
                                 "url": url.length == 0 ? null : url
@@ -36,14 +36,14 @@ export class MyPresentsService extends BaseHttpService {
 
   removePresent(id:string): void {
     this.store.dispatch({type: REMOVE_MY_PRESENTS, payload: id});
-    this.httpClient.delete(`${this.NEW_URL}/my/presents/${id}`)
+    this.httpClient.delete(`${this.BASE_URL}/my/presents/${id}`)
                         .subscribe(payload => setTimeout(()=>this.loadMyPresents(), 2000));
     
   }
 
   updatePresent(id:string, name:string, url:string): void {
     this.store.dispatch({type: UPDATE_MY_PRESENTS, payload: {id: id, title: name, url: url}});
-    this.httpClient.put(`${this.NEW_URL}/my/presents/${id}`,
+    this.httpClient.put(`${this.BASE_URL}/my/presents/${id}`,
                 {
                     "title" : name,
                     "url" : url.length == 0 ? null : url

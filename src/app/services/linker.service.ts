@@ -14,15 +14,15 @@ export class LinkerService extends BaseHttpService {
   }
 
   getFollowed(token: String):Observable<any> {
-    return this.httpClient.get(`${this.NEW_URL}/connections`)
+    return this.httpClient.get(`${this.BASE_URL}/connections`)
   }
 
   disconnectFollowee(token: String, id:string):Observable<any> {
-    return this.httpClient.delete(`${this.NEW_URL}/connections/${id}`);
+    return this.httpClient.delete(`${this.BASE_URL}/connections/${id}`);
   }
 
   followNew(token:String, emailAddress:String):Observable<any> {
-    return this.httpClient.post(`${this.NEW_URL}/connections/${emailAddress}`, {});
+    return this.httpClient.post(`${this.BASE_URL}/connections/${emailAddress}`, {});
   }
 
 }

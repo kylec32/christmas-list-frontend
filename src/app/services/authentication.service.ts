@@ -20,7 +20,7 @@ export class AuthenticationService extends BaseHttpService {
 
 
   login(emailAddress: String, password: String):Observable<any> {
-    return this.httpClient.post(`${this.NEW_URL}/sign-in`,
+    return this.httpClient.post(`${this.BASE_URL}/sign-in`,
                                   {
                                     "emailAddress": emailAddress,
                                     "password": password
@@ -32,14 +32,15 @@ export class AuthenticationService extends BaseHttpService {
             && localStorage.getItem('token').length > 0;
   }
 
-  signUp(firstName:String, lastName:String, emailAddress:String, password:String): Observable<any> {
-    return this.httpClient.post(`${this.NEW_URL}/sign-up`,
+  signUp(firstName:String, lastName:String, emailAddress:String, password:String, captcha: string): Observable<any> {
+    return this.httpClient.post(`${this.BASE_URL}/sign-up`,
                                   {
                                     "firstName": firstName,
                                     "lastName": lastName,
                                     "emailAddress": emailAddress,
                                     "username": emailAddress,
-                                    "password": password
+                                    "password": password,
+                                    "captcha": captcha
                                   },
                                   { observe: 'response' }
                                 );

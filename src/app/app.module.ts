@@ -25,7 +25,10 @@ import { SaveEditPresentDialogComponent } from './components/save-edit-present-d
 
 import { CanActivateViaAuthGuard } from './services/authenticated.guard';
 import { AddAuthenticationHeaderInterceptor } from './services/injector/add-auth-header.service';
+import { LogOutWithUnauthroized } from './services/injector/logged-out-handler.service';
 import { MyPresentsListComponent } from './components/my-presents-list/my-presents-list.component';
+
+import { RecaptchaModule } from 'ng-recaptcha';
 
 import { environment } from '../environments/environment';
 
@@ -72,7 +75,8 @@ const appRoutes: Routes = [
     MatCardModule,
     MatSnackBarModule,
     MatListModule,
-    MatDialogModule
+    MatDialogModule,
+    RecaptchaModule.forRoot()
   ],
   providers: [AuthenticationService,
               LinkerService,
@@ -84,7 +88,12 @@ const appRoutes: Routes = [
                 provide: HTTP_INTERCEPTORS,
                 useClass: AddAuthenticationHeaderInterceptor,
                 multi: true
-            }],
+              },
+              {
+                provide: HTTP_INTERCEPTORS,
+                useClass: LogOutWithUnauthroized,
+                multi: true
+              }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
