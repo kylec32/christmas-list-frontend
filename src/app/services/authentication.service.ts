@@ -46,6 +46,10 @@ export class AuthenticationService extends BaseHttpService {
                                 );
   }
 
+  resetPassword(email: string): Observable<any> {
+    return this.httpClient.post(`${this.BASE_URL}/reset/${email}`, {});
+  }
+
   logout():void {
     this.store.dispatch({type: LOGOUT});
     localStorage.removeItem('token');

@@ -1,0 +1,6 @@
+.forgotten-password {
+    font-style: italic;
+    font-size: 12px;
+    cursor: pointer;
+    color: blue;
+}

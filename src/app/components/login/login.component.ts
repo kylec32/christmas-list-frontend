@@ -12,8 +12,8 @@ import { MatSnackBar } from '@angular/material';
 })
 export class LoginComponent implements OnInit {
 
-  email: String;
-  password: String;
+  email: string;
+  password: string;
 
   constructor(private snakBar: MatSnackBar, private _router: Router, private store: Store<any>, private authenticationService: AuthenticationService) { 
     this.email = "";
@@ -55,6 +55,22 @@ export class LoginComponent implements OnInit {
           
           this.clearForm();
         })
+  }
+
+  forgottenPassword(): void {
+    if(this.email == undefined || this.email.length == 0) {
+      this.snakBar.open('Please enter an email address before clicking forgotten password.',
+                        null,
+                        { duration: 1500 });
+    } else {
+      this.authenticationService.resetPassword(this.email)
+            .subscribe(value => 
+              this.snakBar.open('Please check your email for password reset link.',
+                        null,
+                        { duration: 1500 })
+              );
+      
+    }
   }
 
   allowSignIn(): boolean {
