@@ -46,8 +46,16 @@ export class AuthenticationService extends BaseHttpService {
                                 );
   }
 
-  resetPassword(email: string): Observable<any> {
+  forgottenPassword(email: string): Observable<any> {
     return this.httpClient.post(`${this.BASE_URL}/reset/${email}`, {});
+  }
+
+  resetPassword(password: string, token: string): Observable<any> {
+    return this.httpClient.post(`${this.BASE_URL}/reset`,
+    {
+      'password': password,
+      'token': token
+    });
   }
 
   logout():void {

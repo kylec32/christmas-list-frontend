@@ -31,11 +31,13 @@ import { MyPresentsListComponent } from './components/my-presents-list/my-presen
 import { RecaptchaModule } from 'ng-recaptcha';
 
 import { environment } from '../environments/environment';
+import { ForgottenPasswordComponent } from './components/forgotten-password/forgotten-password.component';
 
 const appRoutes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
+  { path: 'reset/:email/:token', component: ForgottenPasswordComponent },
   { path: 'list',
     component: ChristmasListComponent, 
     canActivate: [CanActivateViaAuthGuard]
@@ -51,7 +53,8 @@ const appRoutes: Routes = [
     SignupComponent,
     ChristmasListComponent,
     SaveEditPresentDialogComponent,
-    MyPresentsListComponent
+    MyPresentsListComponent,
+    ForgottenPasswordComponent
   ],
   entryComponents: [
     SaveEditPresentDialogComponent

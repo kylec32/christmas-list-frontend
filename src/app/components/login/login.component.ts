@@ -63,7 +63,7 @@ export class LoginComponent implements OnInit {
                         null,
                         { duration: 1500 });
     } else {
-      this.authenticationService.resetPassword(this.email)
+      this.authenticationService.forgottenPassword(this.email)
             .subscribe(value => 
               this.snakBar.open('Please check your email for password reset link.',
                         null,
