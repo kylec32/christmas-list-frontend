@@ -49,7 +49,7 @@ export class MyPresentsService extends BaseHttpService {
                     "url" : url.length == 0 ? null : url
                 })
               .subscribe(result => {
-                  setTimeout(() => this.loadMyPresents(), 1750);
+                  setTimeout(() => this.loadMyPresents(), 3000);
               });
     }
 

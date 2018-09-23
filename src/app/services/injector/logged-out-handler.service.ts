@@ -11,11 +11,12 @@ export class LogOutWithUnauthroized implements HttpInterceptor {
                 private authenticationServicer: AuthenticationService){ }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    
         return next.handle(request).pipe(
             tap((event: HttpEvent<any>) => {},
                 (err: any) => {
                 if (err instanceof HttpErrorResponse) {
-                    if (err.status === 401) {
+                    if (err.status === 403 || err.status === 401) {
                         this.authenticationServicer.logout();
                         this.router.navigate(['/']);
                     }

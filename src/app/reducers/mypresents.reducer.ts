@@ -18,9 +18,10 @@ export function mypresents(state = [], action: ActionWithPayload<any>) {
         case REMOVE_MY_PRESENTS:
             return state.filter((present) => { return present.id != action.payload; } );
         case UPDATE_MY_PRESENTS:
-            return [...state.filter((present) => {
-                return present.id != action.payload.id;
-            }), action.payload];
+            const indexOfItem = state.findIndex(present => present.id == action.payload.id);
+            const presentList = [...state];
+            presentList[indexOfItem] = action.payload;
+            return presentList;
         default:
             return state;
     }

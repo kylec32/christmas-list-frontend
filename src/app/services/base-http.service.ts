@@ -4,5 +4,5 @@ import { RequestOptions, Headers } from '@angular/http';
 @Injectable()
 export class BaseHttpService {
     //BASE_URL = "http://localhost:3000";
-    BASE_URL:string = "https://nv372hias4.execute-api.us-east-1.amazonaws.com/dev";
+    BASE_URL:string = "https://9jok0yonc3.execute-api.us-west-2.amazonaws.com/dev";
 }    
