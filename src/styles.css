@@ -12,7 +12,8 @@
 }
 body {
     margin: 0px;
-    background-color: green;
+    /*background-color: green;*/
+    background-color: #EAE7DC;
 }
 .wrapper {
     display: grid;
@@ -54,5 +55,9 @@ body {
     .bottom-right-desktop {
         grid-column-start: 1;
         grid-row-start: 2;
+    }
+
+    .center-card {
+        width:80%;
     }
 }

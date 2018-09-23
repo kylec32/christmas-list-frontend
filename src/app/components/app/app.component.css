@@ -1,6 +1,10 @@
 .header {
     text-align: center;
-    background:red;
+    /*background:red;*/
+    /*background-color: #19181A;*/
+    /* background-color: #062F4F; */
+    /* background-color: #A9A9A9; */
+    background-color: #565656;
     font-size:30px;
     margin-bottom: 10px;
     color:white;
