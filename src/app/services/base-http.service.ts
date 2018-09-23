@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { RequestOptions, Headers } from '@angular/http';
 
 @Injectable()
 export class BaseHttpService {
