@@ -52,7 +52,9 @@ export class LoginComponent implements OnInit {
           this.clearForm();
         }, (error) => {
           console.error(error);
-          
+          this.snakBar.open('Invalid Credentials', null, {
+            duration: 2000,
+          });
           this.clearForm();
         })
   }
