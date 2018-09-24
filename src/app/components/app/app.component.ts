@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { LOGIN, LOGOUT } from '../../reducers/authentication.reducer';
+import { LOGIN } from '../../reducers/authentication.reducer';
 import { AuthenticationService } from '../../services/authentication.service';
 
 @Component({
@@ -16,6 +16,13 @@ export class AppComponent implements OnInit {
   constructor(private store: Store<any>,
               private router: Router,
               private authenticationService: AuthenticationService) {
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        console.log("Sending: " + event.urlAfterRedirects);
+        (<any>window).ga('set', 'page', event.urlAfterRedirects);
+        (<any>window).ga('send', 'pageview');
+      }
+    });
   }
 
   ngOnInit() {

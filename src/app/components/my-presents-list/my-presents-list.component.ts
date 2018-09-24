@@ -3,6 +3,7 @@ import { Observable } from 'rxjs/Rx';
 import { MatSnackBar, MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 import { MyPresentsService } from '../../services/mypresents.service';
+import { AnalyticsService } from '../../services/analytics.service';
 
 import { SaveEditPresentDialogComponent } from '../save-edit-present-dialog/save-edit-present-dialog.component';
 
@@ -17,7 +18,8 @@ export class MyPresentsListComponent implements OnInit {
 
   constructor(private myPresentsService: MyPresentsService,
               private dialog: MatDialog,
-              private snakBar: MatSnackBar) {
+              private snakBar: MatSnackBar,
+              private analyticsService: AnalyticsService) {
     this.myPresents = this.myPresentsService.myPresents;
    }
 
@@ -30,12 +32,14 @@ export class MyPresentsListComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(data => {
       if(!data.cancelled) {
+        this.analyticsService.sendEvent('addedPresent');
         this.myPresentsService.newPresent(data.name, data.url);
       }
     });
   }
 
   removePresent(id:string):void {
+    this.analyticsService.sendEvent('removedPresent');
     this.myPresentsService.removePresent(id);
   }
 
@@ -47,6 +51,7 @@ export class MyPresentsListComponent implements OnInit {
     
     dialogRef.afterClosed().subscribe(data => {
       if(!data.cancelled) {
+        this.analyticsService.sendEvent('editedPresent');
         this.myPresentsService.updatePresent(present.id, data.name, data.url);
       }
     });

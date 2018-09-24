@@ -16,6 +16,7 @@ import { AuthenticationService } from './services/authentication.service';
 import { LinkerService } from './services/linker.service';
 import { MyPresentsService } from './services/mypresents.service';
 import { PresentService } from './services/presents.service';
+import { AnalyticsService } from './services/analytics.service';
 import { token } from './reducers/authentication.reducer';
 import { following } from './reducers/connection.reducer';
 import { mypresents } from './reducers/mypresents.reducer';
@@ -85,6 +86,7 @@ const appRoutes: Routes = [
               LinkerService,
               MyPresentsService,
               PresentService,
+              AnalyticsService,
               CanActivateViaAuthGuard,
               MatDialogModule,
               {

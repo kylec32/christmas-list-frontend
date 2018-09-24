@@ -28,6 +28,7 @@ export class SignupComponent implements OnInit {
               private store: Store<any>) { }
 
   ngOnInit() {
+    this.captchaRef.reset();
   }
 
   canSignUp(): boolean {
