@@ -27,13 +27,10 @@ export class ChristmasListComponent implements OnInit {
                   this.followerPresents = this.presentService.otherPresents;
               }
 
-  ngOnInit() {
-    
+  ngOnInit() {  
     this.loadFollowing();
-    //this.presentService.loadOtherPresents();
 
     this.store.select('following').subscribe((following) => {
-      console.log(following);
       this.following = following;
     }, (error) => {
       console.log(error);

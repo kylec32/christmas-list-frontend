@@ -18,7 +18,6 @@ export class AppComponent implements OnInit {
               private authenticationService: AuthenticationService) {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
-        console.log("Sending: " + event.urlAfterRedirects);
         (<any>window).ga('set', 'page', event.urlAfterRedirects);
         (<any>window).ga('send', 'pageview');
       }
