@@ -6,7 +6,13 @@
   <mat-list role="list">
     <div *ngFor="let present of myPresents | async" class="list-item-container">
       <mat-list-item role="listitem">
+        <span *ngIf="present.url == undefined">
+            {{present.title}}
+        </span>
+        <a [href]="present.url" target="_blank" *ngIf="present.url != undefined">
           {{present.title}}
+        </a>
+          
       </mat-list-item>
       <button *ngIf="present.id != undefined" mat-button color="primary" (click)="editPresent(present)">Edit</button>
       <button *ngIf="present.id != undefined" mat-button color="warn" style="margin-left:50px" (click)="removePresent(present.id)">Remove</button>
