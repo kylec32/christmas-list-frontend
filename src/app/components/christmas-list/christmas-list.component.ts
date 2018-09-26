@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { MatSnackBar, MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatSnackBar } from '@angular/material';
 import { Observable } from 'rxjs/Rx';
 
 import { FOLLOWING_LOADED, FOLLOWEE_DELETE, FOLLOWING_ADD } from '../../reducers/connection.reducer';
 
 import { LinkerService } from '../../services/linker.service';
 import { PresentService } from '../../services/presents.service';
+import { Follower } from '../../wish-list/interfaces/follower';
 
 @Component({
   selector: 'app-christmas-list',
@@ -15,7 +16,6 @@ import { PresentService } from '../../services/presents.service';
 })
 export class ChristmasListComponent implements OnInit {
 
-  newFollowEmail:String = "";
   following:any[] = [];
   token:String = "";
   followerPresents:Observable<Array<any>>;
@@ -35,6 +35,23 @@ export class ChristmasListComponent implements OnInit {
     }, (error) => {
       console.log(error);
     })
+  }
+
+  connectWithFollower(follower: Follower) {
+    this.store.dispatch({type: FOLLOWING_ADD, payload:{"name": follower.userName}});
+    this.linkerService.followNew(this.token, follower.userName)
+          .subscribe((addResult) => {
+            this.snakBar.open(`Successfully added: ${follower.userName}`
+            , null
+            , { duration: 2000 });
+
+            setTimeout(() => this.loadFollowing(), 1000);
+          }, (error) => {
+            this.loadFollowing();
+            this.snakBar.open(`Couldn't find account for: ${follower.userName}`, null, {
+              duration: 2000,
+            });
+          });
   }
 
   loadFollowing() {
@@ -62,25 +79,6 @@ export class ChristmasListComponent implements OnInit {
             duration: 2000,
           });
         });
-  }
-
-  followNew() {
-    const email = this.newFollowEmail;
-    this.store.dispatch({type: FOLLOWING_ADD, payload:{"name": email}});
-    this.linkerService.followNew(this.token, email)
-          .subscribe((addResult) => {
-            this.snakBar.open(`Successfully added: ${email}`
-            , null
-            , { duration: 2000 });
-            
-            setTimeout(() => this.loadFollowing(), 1000);
-          }, (error) => {
-            this.loadFollowing();
-            this.snakBar.open(`Couldn't find account for: ${email}`, null, {
-              duration: 2000,
-            });
-          });
-    this.newFollowEmail = "";
   }
 
   followersEmpty():boolean {

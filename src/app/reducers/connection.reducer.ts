@@ -16,7 +16,7 @@ export function following(state = [], action: ActionWithPayload<any>) {
             return [...state, action.payload];
         case FOLLOWEE_DELETE:
             return state.filter((follower) => {
-                return follower.ID != action.payload.toDelete.ID;
+                return follower.id != action.payload.toDelete.id;
             });;
         default:
             return state;

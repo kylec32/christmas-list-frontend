@@ -1,0 +1,19 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title><b>Connect with others:</b></mat-card-title>
+  </mat-card-header>
+  <form [formGroup]="followForm">
+    <mat-form-field class="almost-full-width">
+      <input matInput formControlName="search" placeholder="Start typing name or email...">
+    </mat-form-field>
+  </form>
+  <div>
+    <div *ngIf="loading" class="spinner center"></div>
+    <div *ngIf="!loading && searchList.length == 0" style="height:40px"></div>
+    <div class="list-item" *ngFor="let searchItem of searchList" (click)="followWithEmail(searchItem)">
+      {{searchItem.name}}
+      <div class="email-item">{{searchItem.userName}}</div>
+      <hr/>
+    </div>
+  </div>
+</mat-card>

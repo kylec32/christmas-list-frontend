@@ -1,17 +1,5 @@
 <div class="wrapper">
-<mat-card class="center my-content upper-right-desktop">
-  <mat-card-header>
-    <mat-card-title><b>Follow Someone New:</b></mat-card-title>
-  </mat-card-header>
-  <mat-card-content>
-    <mat-form-field style="width: 60%">
-      <input matInput placeholder="Email Address" [(ngModel)]="newFollowEmail">
-    </mat-form-field>
-    <button mat-button color="primary" style="margin-left:30px" (click)="followNew()">
-      Follow
-    </button>
-  </mat-card-content>
-</mat-card>
+<app-follow-finder class="upper-right-desktop" (newFolloweeSelected)="connectWithFollower($event)"></app-follow-finder>
 <mat-card class="center my-content bottom-right-desktop">
     <mat-card-header>
         <mat-card-title><b>Following:</b></mat-card-title>

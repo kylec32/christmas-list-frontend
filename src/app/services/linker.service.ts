@@ -1,15 +1,14 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 
 import { BaseHttpService } from './base-http.service';
+import { Follower } from '../wish-list/interfaces/follower';
 
 @Injectable()
 export class LinkerService extends BaseHttpService {
 
-  constructor(private http: Http,
-              private httpClient: HttpClient) { 
+  constructor(private httpClient: HttpClient) {
     super();
   }
 
@@ -23,6 +22,10 @@ export class LinkerService extends BaseHttpService {
 
   followNew(token:String, emailAddress:String):Observable<any> {
     return this.httpClient.post(`${this.BASE_URL}/connections/${emailAddress}`, {});
+  }
+
+  searchFollowers(emailAddressSearch: string):Observable<Follower[]> {
+    return this.httpClient.get<Follower[]>(`${this.BASE_URL}/users/${emailAddressSearch}`);
   }
 
 }

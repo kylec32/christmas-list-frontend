@@ -2,12 +2,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-import { MatButtonModule, MatCardModule, MatInputModule, MatSnackBarModule, MatListModule, MatDialogModule } from '@angular/material';
+import { MatDialogModule } from '@angular/material';
 import { StoreModule } from '@ngrx/store';
-import { FormsModule }   from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+
+import { WishListModule } from './wish-list/wish-list.module';
 
 import { AppComponent } from './components/app/app.component';
 import { LoginComponent } from './components/login/login.component';
@@ -33,6 +34,7 @@ import { RecaptchaModule } from 'ng-recaptcha';
 
 import { environment } from '../environments/environment';
 import { ForgottenPasswordComponent } from './components/forgotten-password/forgotten-password.component';
+import { SharedModule } from './shared/shared.module';
 
 const appRoutes: Routes = [
   { path: '', component: LoginComponent },
@@ -71,19 +73,13 @@ const appRoutes: Routes = [
     }),
     BrowserModule,
     BrowserAnimationsModule,
-    FormsModule,
     HttpModule,
     HttpClientModule,
-    MatButtonModule,
-    MatInputModule,
-    MatCardModule,
-    MatSnackBarModule,
-    MatListModule,
-    MatDialogModule,
-    RecaptchaModule.forRoot()
+    RecaptchaModule.forRoot(),
+    SharedModule,
+    WishListModule
   ],
   providers: [AuthenticationService,
-              LinkerService,
               MyPresentsService,
               PresentService,
               AnalyticsService,
