@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FollowFinderComponent } from './follow-finder/follow-finder.component';
 import { UiModule } from '../ui/ui.module';
 import { SharedModule } from '../shared/shared.module';
+import { FollowerListComponent } from './follower-list/follower-list.component';
 
 @NgModule({
   imports: [
@@ -10,9 +11,11 @@ import { SharedModule } from '../shared/shared.module';
     UiModule,
     SharedModule
   ],
-  declarations: [FollowFinderComponent],
+  declarations: [FollowFinderComponent,
+    FollowerListComponent],
   exports: [
-    FollowFinderComponent
+    FollowFinderComponent,
+    FollowerListComponent
   ]
 })
 export class WishListModule { }

@@ -1,23 +1,7 @@
 <div class="wrapper">
 <app-follow-finder class="upper-right-desktop" (newFolloweeSelected)="connectWithFollower($event)"></app-follow-finder>
-<mat-card class="center my-content bottom-right-desktop">
-    <mat-card-header>
-        <mat-card-title><b>Following:</b></mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-    <div *ngIf="followersEmpty()" style="margin-left:30px">
-      No one!
-    </div>
-    <mat-list>
-      <mat-list-item *ngFor="let follow of following">
-        {{follow.name}}
-        <button *ngIf="follow.id != undefined" mat-raised-button color="warn" style="margin-left:auto" (click)="removeFollower(follow)">
-          Disconnect
-        </button>
-      </mat-list-item>
-    </mat-list>
-  </mat-card-content>
-</mat-card>
+
+<app-follower-list class="bottom-right-desktop" [following]="following" (onDelete)="removeFollower($event)"></app-follower-list>
 
 <app-my-presents-list class="center" style="width:92%">
 </app-my-presents-list>
