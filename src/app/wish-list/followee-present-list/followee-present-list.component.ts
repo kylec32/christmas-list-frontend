@@ -8,7 +8,7 @@ import { FolloweeWithPresents } from '../interfaces/follower-with-presents';
 })
 export class FolloweePresentListComponent implements OnInit {
 
-  @Input() followeeWithPresents: FolloweeWithPresents[];
+  @Input() followeeWithPresents: FolloweeWithPresents;
   expanded: boolean = true;
   contentClass: string = "visible";
   @Output() onMarkAsPurchased = new EventEmitter<any>();
