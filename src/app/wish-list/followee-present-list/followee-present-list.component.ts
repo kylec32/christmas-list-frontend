@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { FolloweeWithPresents } from '../interfaces/follower-with-presents';
 
 @Component({
   selector: 'app-followee-present-list',
@@ -7,7 +8,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class FolloweePresentListComponent implements OnInit {
 
-  @Input() followeeWithPresents: any[];
+  @Input() followeeWithPresents: FolloweeWithPresents[];
   expanded: boolean = true;
   contentClass: string = "visible";
   @Output() onMarkAsPurchased = new EventEmitter<any>();
