@@ -81,16 +81,12 @@ export class ChristmasListComponent implements OnInit {
         });
   }
 
-  followersEmpty():boolean {
-    return typeof(this.following) == "undefined" || this.following.length == 0;
+  markAsPurchased(markPresentAsPurchasedRequest: any):void {
+    this.presentService.markAsPurchased(markPresentAsPurchasedRequest.targetUserId, markPresentAsPurchasedRequest.presentId);
   }
 
-  markAsPurchased(targetUsrId:string, presentId: string):void {
-    this.presentService.markAsPurchased(targetUsrId, presentId);
-  }
-
-  unmarkAsPurchased(targetUsrId:string, presentId: string):void {
-    this.presentService.unmarkAsPurchased(targetUsrId, presentId);
+  unmarkAsPurchased(unmarkPresentAsPurchasedRequest: any):void {
+    this.presentService.unmarkAsPurchased(unmarkPresentAsPurchasedRequest.targetUserId, unmarkPresentAsPurchasedRequest.presentId);
   }
 
   presentHasLink(present:any):boolean {

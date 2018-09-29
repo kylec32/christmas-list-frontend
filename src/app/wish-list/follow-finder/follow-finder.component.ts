@@ -26,12 +26,12 @@ export class FollowFinderComponent {
     this.searchField.valueChanges
     this.searchField
               .valueChanges
-              .debounceTime(400)
               .pipe(
                 tap( _ => 
                   this.loading = true
                 )
               )
+              .debounceTime(400)
               .switchMap(term => {
                 if(term.length > 0) {
                   return this.linkerService.searchFollowers(term);
@@ -51,5 +51,9 @@ export class FollowFinderComponent {
     this.searchList = [];
     this.newFolloweeSelected.emit(user);
     this.searchField.setValue('');
+  }
+
+  noResults(): boolean {
+    return this.searchList.length == 0 && !this.loading && this.searchField.value != undefined && this.searchField.value.length > 0;
   }
 }

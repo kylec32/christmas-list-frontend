@@ -9,6 +9,9 @@
   </form>
   <div>
     <div *ngIf="loading" class="spinner center"></div>
+    <span *ngIf="noResults()">
+      No results found.
+    </span>
     <div *ngIf="!loading && searchList.length == 0" style="height:40px"></div>
     <div class="list-item" *ngFor="let searchItem of searchList" (click)="followWithEmail(searchItem)">
       {{searchItem.name}}

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
-import { MatSnackBar, MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatSnackBar, MatDialog } from '@angular/material';
 
 import { MyPresentsService } from '../../services/mypresents.service';
 import { AnalyticsService } from '../../services/analytics.service';
@@ -15,6 +15,8 @@ import { SaveEditPresentDialogComponent } from '../save-edit-present-dialog/save
 export class MyPresentsListComponent implements OnInit {
 
   myPresents:Observable<Array<any>>;
+  expanded: boolean = true;
+  contentClass: string = "visible";
 
   constructor(private myPresentsService: MyPresentsService,
               private dialog: MatDialog,
@@ -55,6 +57,15 @@ export class MyPresentsListComponent implements OnInit {
         this.myPresentsService.updatePresent(present.id, data.name, data.url);
       }
     });
+  }
+
+  toggleVisible() {
+    if(this.expanded) {
+      this.contentClass = "collapsed";
+    } else {
+      this.contentClass = "visible";
+    }
+    this.expanded = !this.expanded;
   }
 
 }

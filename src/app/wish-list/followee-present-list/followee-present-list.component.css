@@ -1,7 +1,3 @@
-.my-content {
-    width: 92%;
-}
-
 .list-item {
     display: inline-block;
     width: calc(100% - 190px);
@@ -25,4 +21,21 @@
         border-bottom: 1px solid;
         margin-bottom: 15px;
     }
+}
+
+.collapsed {
+    display: none;
+    transition: opacity 1s ease-out;
+    opacity: 0; 
+    height: 0;
+    overflow: hidden;
+}
+
+.visible {
+    display: block;
+    opacity: 1;
+}
+
+.clickable {
+    cursor: pointer;
 }

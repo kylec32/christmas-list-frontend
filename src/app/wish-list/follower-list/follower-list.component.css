@@ -10,3 +10,7 @@
     display: block;
     opacity: 1;
 }
+
+.clickable {
+    cursor: pointer;
+}

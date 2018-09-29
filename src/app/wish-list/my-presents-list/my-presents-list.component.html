@@ -1,8 +1,12 @@
 <mat-card>
-  <mat-card-header>
-      <mat-card-title><b>My List</b></mat-card-title>
+  <mat-card-header (click)="toggleVisible()">
+    <mat-card-title><b>My List</b></mat-card-title>
+    <div class="clickable">
+      <i class="fas fa-chevron-down" *ngIf="!expanded"></i>
+      <i class="fas fa-chevron-up" *ngIf="expanded"></i>
+    </div>
   </mat-card-header>
-  <mat-card-content>
+  <mat-card-content  [class]="contentClass">
   <mat-list role="list">
     <div *ngFor="let present of myPresents | async" class="list-item-container">
       <mat-list-item role="listitem">
@@ -18,6 +22,6 @@
       <button *ngIf="present.id != undefined" mat-button color="warn" style="margin-left:50px" (click)="removePresent(present.id)">Remove</button>
     </div>
   </mat-list>
-  <button mat-raised-button (click)="addPresent()">New Present</button>
+  <button class="new-present" mat-raised-button (click)="addPresent()">New Present</button>
 </mat-card-content>
 </mat-card>

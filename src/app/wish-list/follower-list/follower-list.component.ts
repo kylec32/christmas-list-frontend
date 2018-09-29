@@ -10,7 +10,7 @@ export class FollowerListComponent implements OnInit {
 
   @Input() following: Follower[]
   @Output() onDelete: EventEmitter<Follower> = new EventEmitter<Follower>();
-  expanded: boolean = false;
+  expanded: boolean = true;
   contentClass: string = "visible";
 
   constructor() { }
@@ -28,9 +28,9 @@ export class FollowerListComponent implements OnInit {
 
   toggleVisible() {
     if(this.expanded) {
-      this.contentClass = "visible";
-    } else {
       this.contentClass = "collapsed";
+    } else {
+      this.contentClass = "visible";
     }
     this.expanded = !this.expanded;
   }

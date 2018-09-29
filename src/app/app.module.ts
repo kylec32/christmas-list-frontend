@@ -14,7 +14,6 @@ import { AppComponent } from './components/app/app.component';
 import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { AuthenticationService } from './services/authentication.service';
-import { LinkerService } from './services/linker.service';
 import { MyPresentsService } from './services/mypresents.service';
 import { PresentService } from './services/presents.service';
 import { AnalyticsService } from './services/analytics.service';
@@ -23,12 +22,10 @@ import { following } from './reducers/connection.reducer';
 import { mypresents } from './reducers/mypresents.reducer';
 import { presents } from './reducers/present.reducer';
 import { ChristmasListComponent } from './components/christmas-list/christmas-list.component';
-import { SaveEditPresentDialogComponent } from './components/save-edit-present-dialog/save-edit-present-dialog.component';
 
 import { CanActivateViaAuthGuard } from './services/authenticated.guard';
 import { AddAuthenticationHeaderInterceptor } from './services/injector/add-auth-header.service';
 import { LogOutWithUnauthroized } from './services/injector/logged-out-handler.service';
-import { MyPresentsListComponent } from './components/my-presents-list/my-presents-list.component';
 
 import { RecaptchaModule } from 'ng-recaptcha';
 
@@ -55,12 +52,7 @@ const appRoutes: Routes = [
     LoginComponent,
     SignupComponent,
     ChristmasListComponent,
-    SaveEditPresentDialogComponent,
-    MyPresentsListComponent,
     ForgottenPasswordComponent
-  ],
-  entryComponents: [
-    SaveEditPresentDialogComponent
   ],
   imports: [RouterModule.forRoot(
       appRoutes

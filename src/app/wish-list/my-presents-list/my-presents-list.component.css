@@ -14,3 +14,24 @@
         margin-bottom: 15px;
     }
 }
+
+.collapsed {
+    display: none;
+    transition: opacity 1s ease-out;
+    opacity: 0; 
+    height: 0;
+    overflow: hidden;
+}
+
+.visible {
+    display: block;
+    opacity: 1;
+}
+
+.clickable {
+    cursor: pointer;
+}
+
+.new-present {
+    margin-top: 15px;
+}

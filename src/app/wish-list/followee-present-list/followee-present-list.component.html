@@ -1,0 +1,28 @@
+<mat-card >
+  <mat-card-header (click)="toggleVisible()">
+      <mat-card-title><b>{{followeeWithPresents.name}}</b></mat-card-title>
+      <div class="clickable">
+          <i class="fas fa-chevron-down" *ngIf="!expanded"></i>
+          <i class="fas fa-chevron-up" *ngIf="expanded"></i>
+        </div>
+  </mat-card-header>
+  <br/>
+  <mat-card-content [class]="contentClass">
+      <div *ngIf="followeeWithPresents.presents.length == 0">No presents</div>
+      <div class="list-item-container" *ngFor="let present of followeeWithPresents.presents">
+        <div class="list-item">
+          <a [href]="present.url" target="_blank" *ngIf="presentHasLink(present)">
+            {{present.title}}
+          </a>
+          <span *ngIf="!presentHasLink(present) ">
+              {{present.title}}
+          </span>
+        </div>
+        
+        <button *ngIf="!present.purchased" mat-button color="primary" (click)="markAsPurchased(followeeWithPresents.id, present.id)" >Mark as Purchased</button>
+        <button *ngIf="present.purchased && present.purchasedByUser" mat-button color="primary" (click)="unmarkAsPurchased(followeeWithPresents.id, present.id)">Mark as Not Purchased</button>
+        <div *ngIf="present.purchased && !present.purchasedByUser" class="already-purchased">Already Purchased</div>
+      </div>
+  </mat-card-content>
+</mat-card>
+<br/>

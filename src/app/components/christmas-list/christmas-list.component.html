@@ -1,40 +1,14 @@
 <div class="wrapper">
-<app-follow-finder class="upper-right-desktop" (newFolloweeSelected)="connectWithFollower($event)"></app-follow-finder>
+  <app-follow-finder class="upper-right-desktop my-content" (newFolloweeSelected)="connectWithFollower($event)"></app-follow-finder>
 
-<app-follower-list class="bottom-right-desktop" [following]="following" (onDelete)="removeFollower($event)"></app-follower-list>
+  <app-follower-list class="bottom-right-desktop my-content" [following]="following" (onDelete)="removeFollower($event)"></app-follower-list>
 
-<app-my-presents-list class="center" style="width:92%">
-</app-my-presents-list>
+  <app-my-presents-list class="center my-content">
+  </app-my-presents-list>
 
-<mat-card class="center my-content">
-  <mat-card-header>
-    <mat-card-title><b>Present for others:</b></mat-card-title>
-  </mat-card-header>
-  <mat-card-content>
-
-    <div *ngFor="let follower of followerPresents | async">
-        <br/>
-        <b>{{follower.name}}</b>
-        <br/>
-        <br/>
-        <div>
-            <div class="list-item-container" *ngFor="let present of follower.presents">
-              <div class="list-item">
-                <a [href]="present.url" target="_blank" *ngIf="presentHasLink(present)">
-                  {{present.title}}
-                </a>
-                <span *ngIf="!presentHasLink(present) ">
-                    {{present.title}}
-                </span>
-              </div>
-              
-              <button *ngIf="!present.purchased" mat-button color="primary" (click)="markAsPurchased(follower.id, present.id)" >Mark as Purchased</button>
-              <button *ngIf="present.purchased && present.purchasedByUser" mat-button color="primary" (click)="unmarkAsPurchased(follower.id, present.id)">Mark as Not Purchased</button>
-              <div *ngIf="present.purchased && !present.purchasedByUser" class="already-purchased">Already Purchased</div>
-            </div>
-        </div>
-      </div>
-
-  </mat-card-content>
-</mat-card>
+  <div class="center my-content">
+    <div *ngFor="let followee of followerPresents | async">
+        <app-followee-present-list class="center my-content" [followeeWithPresents]="followee" (onMarkAsPurchased)="markAsPurchased($event)" (onUnmarkAsPurchased)="unmarkAsPurchased($event)"></app-followee-present-list>
+    </div>
+  </div>
 </div>
