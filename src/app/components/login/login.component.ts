@@ -59,6 +59,12 @@ export class LoginComponent implements OnInit {
         })
   }
 
+  tryLogin(): void {
+    if (this.allowSignIn()) {
+      this.login();
+    }
+  }
+
   forgottenPassword(): void {
     if(this.email == undefined || this.email.length == 0) {
       this.snakBar.open('Please enter an email address before clicking forgotten password.',
@@ -71,7 +77,6 @@ export class LoginComponent implements OnInit {
                         null,
                         { duration: 1500 })
               );
-      
     }
   }
 
@@ -81,7 +86,5 @@ export class LoginComponent implements OnInit {
 
   private clearForm() {
     this.email = '';
-    this.password = '';
   }
-
 }

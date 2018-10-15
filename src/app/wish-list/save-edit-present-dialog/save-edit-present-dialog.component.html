@@ -1,13 +1,13 @@
 <h2 mat-dialog-title>New Present Information</h2>
 <mat-dialog-content>
   <mat-form-field style="width: 80%">
-      <input matInput placeholder="Present Name" [(ngModel)]="name">
+      <input matInput placeholder="Present Name" [(ngModel)]="name" (keyup.enter)="attemptSave()">
   </mat-form-field>
   <mat-form-field style="width: 80%">
-      <input matInput placeholder="Link" [(ngModel)]="url">
+      <input matInput placeholder="Link" [(ngModel)]="url" (keyup.enter)="attemptSave()">
   </mat-form-field>
 </mat-dialog-content>
 <mat-dialog-actions>
-  <button mat-button (click)="save()" [disabled]="name.length == 0">Save</button>
+  <button mat-button (click)="save()" [disabled]="!isSavable()">Save</button>
   <button mat-button (click)="cancel()">Cancel</button>
 </mat-dialog-actions>

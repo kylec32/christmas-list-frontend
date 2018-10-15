@@ -16,8 +16,8 @@ export class SaveEditPresentDialogComponent implements OnInit {
 
   ngOnInit() {
     if(this.data != null) {
-      this.name = this.data.description.length > 0 ? this.data.description : "";
-      this.url = this.data.url.length > 0 ? this.data.url : "";
+      this.name = (this.data.description != undefined && this.data.description.length > 0) ? this.data.description : "";
+      this.url = (this.data.url != undefined && this.data.url.length > 0) ? this.data.url : "";
     }
   }
 
@@ -29,4 +29,13 @@ export class SaveEditPresentDialogComponent implements OnInit {
     this.dialogRef.close({cancelled: true});
   }
 
+  attemptSave(): void {
+    if(this.isSavable()) {
+      this.dialogRef.close({cancelled: false, name: this.name, url: this.url});
+    }
+  }
+
+  isSavable(): boolean {
+    return this.name != undefined && this.name.length > 0;
+  }
 }
