@@ -1,6 +1,6 @@
 <mat-card >
   <mat-card-header (click)="toggleVisible()">
-      <mat-card-title><b>{{followeeWithPresents.name}}</b></mat-card-title>
+      <mat-card-title [id]="followeeWithPresents.id + '-present-list'"><b>{{followeeWithPresents.name}}</b></mat-card-title>
       <div class="clickable">
           <i class="fas fa-chevron-down" *ngIf="!expanded"></i>
           <i class="fas fa-chevron-up" *ngIf="expanded"></i>

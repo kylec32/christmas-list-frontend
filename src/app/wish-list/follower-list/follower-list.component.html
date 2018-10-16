@@ -12,7 +12,7 @@
     </div>
     <mat-list>
       <mat-list-item class="follower" *ngFor="let follow of following">
-        {{follow.name}}
+        <div class="clickable" (click)="scrollToUserPresents(follow)">{{follow.name}}</div>
         <button *ngIf="follow.id != undefined" class="delete-button" mat-raised-button color="warn" style="margin-left:auto" (click)="removeFollower(follow)">
           Disconnect
         </button>

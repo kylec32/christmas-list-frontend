@@ -35,4 +35,7 @@ export class FollowerListComponent implements OnInit {
     this.expanded = !this.expanded;
   }
 
+  scrollToUserPresents(followedUser) {
+    document.getElementById(followedUser.id + '-present-list').scrollIntoView();
+  }
 }
