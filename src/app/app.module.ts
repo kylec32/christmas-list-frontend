@@ -26,23 +26,26 @@ import { ChristmasListComponent } from './components/christmas-list/christmas-li
 import { CanActivateViaAuthGuard } from './services/authenticated.guard';
 import { AddAuthenticationHeaderInterceptor } from './services/injector/add-auth-header.service';
 import { LogOutWithUnauthroized } from './services/injector/logged-out-handler.service';
-
 import { RecaptchaModule } from 'ng-recaptcha';
-
 import { environment } from '../environments/environment';
 import { ForgottenPasswordComponent } from './components/forgotten-password/forgotten-password.component';
 import { SharedModule } from './shared/shared.module';
+import { WelcomeComponent } from './components/welcome/welcome.component';
+import { ToolbarWrapperComponent } from './components/toolbar-wrapper/toolbar-wrapper.component';
 
 const appRoutes: Routes = [
-  { path: '', component: LoginComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'signup', component: SignupComponent },
-  { path: 'reset/:email/:token', component: ForgottenPasswordComponent },
-  { path: 'list',
-    component: ChristmasListComponent, 
-    canActivate: [CanActivateViaAuthGuard]
-  },
-  { path: '**', component: LoginComponent }
+  { path: '', component: WelcomeComponent },
+  { path: '', component: ToolbarWrapperComponent,
+  children: [
+    { path: 'login', component: LoginComponent },
+    { path: 'signup', component: SignupComponent },
+    { path: 'reset/:email/:token', component: ForgottenPasswordComponent },
+    { path: 'list',
+      component: ChristmasListComponent, 
+      canActivate: [CanActivateViaAuthGuard]
+    }
+  ]},
+  { path: '**', component: WelcomeComponent}
 ];
 
 
@@ -52,7 +55,9 @@ const appRoutes: Routes = [
     LoginComponent,
     SignupComponent,
     ChristmasListComponent,
-    ForgottenPasswordComponent
+    ForgottenPasswordComponent,
+    WelcomeComponent,
+    ToolbarWrapperComponent
   ],
   imports: [RouterModule.forRoot(
       appRoutes

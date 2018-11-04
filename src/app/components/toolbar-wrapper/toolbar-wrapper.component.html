@@ -1,0 +1,11 @@
+<div class="header">
+  Wish List Sharer
+  <button mat-button style="float:right;" *ngIf="loggedIn" (click)="logout()">Sign Out</button>
+</div>
+
+<router-outlet></router-outlet>
+<div style="margin-top:25px; margin-bottom:15px">
+  <div style="text-align:center; color:#565656;">
+      Made with <span style="color: red">&hearts;</span> by Kyle Carter 2018
+  </div>
+</div>
