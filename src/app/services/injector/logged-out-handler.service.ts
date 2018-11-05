@@ -18,7 +18,7 @@ export class LogOutWithUnauthroized implements HttpInterceptor {
                 if (err instanceof HttpErrorResponse) {
                     if (err.status === 403 || err.status === 401) {
                         this.authenticationServicer.logout();
-                        this.router.navigate(['/']);
+                        this.router.navigate(['/login']);
                     }
                 }
           }));
