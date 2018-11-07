@@ -60,6 +60,7 @@ export class AuthenticationService extends BaseHttpService {
 
   logout():void {
     this.store.dispatch({type: LOGOUT});
+    
     localStorage.removeItem('token');
   }
 

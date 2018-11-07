@@ -1,4 +1,5 @@
 import { Action } from '@ngrx/store';
+import { LOGOUT } from './authentication.reducer';
 
 export const LOAD_OTHER_PRESENTS = "LOAD_OTHER_PRESENTS";
 export const SET_AS_PURCHASED = "SET_AS_PURCHASED";
@@ -32,6 +33,8 @@ export function presents(state = [], action: ActionWithPayload<any>) {
             
                 return item;
             });
+        case LOGOUT:
+            return [];
         default:
             return state;
     }
