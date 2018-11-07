@@ -20,7 +20,7 @@
         </div>
         
         <button *ngIf="!present.purchased" mat-button color="primary" (click)="markAsPurchased(followeeWithPresents.id, present.id)" >Mark as Purchased</button>
-        <button *ngIf="present.purchased && present.purchasedByUser" mat-button color="primary" (click)="unmarkAsPurchased(followeeWithPresents.id, present.id)">Mark as Not Purchased</button>
+        <button *ngIf="present.purchased && present.purchasedByUser" mat-button color="warn" (click)="unmarkAsPurchased(followeeWithPresents.id, present.id)">Mark as Not Purchased</button>
         <div *ngIf="present.purchased && !present.purchasedByUser" class="already-purchased">Already Purchased</div>
       </div>
   </mat-card-content>
