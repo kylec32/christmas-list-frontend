@@ -4,9 +4,12 @@ import { Observable } from 'rxjs/Rx';
 import { LOGOUT } from '../reducers/authentication.reducer';
 import { Store } from '@ngrx/store';
 import { HttpClient } from '@angular/common/http';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable()
 export class AuthenticationService extends BaseHttpService {
+
+  private helper:JwtHelperService = new JwtHelperService();
 
   constructor(private httpClient:HttpClient,
               private store:Store<any>) {
@@ -29,7 +32,8 @@ export class AuthenticationService extends BaseHttpService {
 
   isLoggedIn():boolean {
     return localStorage.getItem('token') != undefined
-            && localStorage.getItem('token').length > 0;
+            && localStorage.getItem('token').length > 0
+            && !this.helper.isTokenExpired(localStorage.getItem('token'));
   }
 
   signUp(firstName:String, lastName:String, emailAddress:String, password:String, captcha: string): Observable<any> {
@@ -59,7 +63,9 @@ export class AuthenticationService extends BaseHttpService {
   }
 
   logout():void {
-    this.store.dispatch({type: LOGOUT});
+    if(this.isLoggedIn()) {
+      this.store.dispatch({type: LOGOUT});
+    }
     
     localStorage.removeItem('token');
   }
