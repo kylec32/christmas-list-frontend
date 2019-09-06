@@ -4,7 +4,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { MatDialogModule } from '@angular/material';
 import { StoreModule } from '@ngrx/store';
-import { HttpModule } from '@angular/http';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
@@ -70,7 +69,6 @@ const appRoutes: Routes = [
     }),
     BrowserModule,
     BrowserAnimationsModule,
-    HttpModule,
     HttpClientModule,
     RecaptchaModule.forRoot(),
     SharedModule,

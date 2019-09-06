@@ -11,6 +11,7 @@ import { AuthenticationService } from '../../services/authentication.service';
 })
 export class ToolbarWrapperComponent implements OnInit {
   loggedIn: boolean = false;
+  currentYear: Number = 2019
 
   constructor(private store: Store<any>,
               private router: Router,
@@ -27,6 +28,8 @@ export class ToolbarWrapperComponent implements OnInit {
     if(localStorage.getItem('token') != undefined) {
       this.store.dispatch({type: LOGIN, payload: {token: localStorage.getItem('token')}});
     }
+
+    this.currentYear = (new Date()).getFullYear()
 
     this.store.select('token').subscribe((success) => {
       this.loggedIn = success != null;

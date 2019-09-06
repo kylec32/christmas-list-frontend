@@ -20,7 +20,7 @@ export class SignupComponent implements OnInit {
   firstName:String = "";
   lastName:String = "";
   private captchaResponse: string = "";
-  @ViewChild("captchaRef") captchaRef: RecaptchaComponent;
+  @ViewChild("captchaRef", { static: true }) captchaRef: RecaptchaComponent;
 
   constructor(private router: Router,
               private authenticationService: AuthenticationService,

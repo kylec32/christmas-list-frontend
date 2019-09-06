@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Rx';
 import { Store } from '@ngrx/store';
@@ -12,7 +11,7 @@ export class MyPresentsService extends BaseHttpService {
 
   myPresents: Observable<Array<any>>;
 
-  constructor(private http:Http, private store: Store<any>, private httpClient: HttpClient) { 
+  constructor(private store: Store<any>, private httpClient: HttpClient) { 
       super();
       this.myPresents = this.store.select("mypresents");
   }
