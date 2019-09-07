@@ -76,7 +76,8 @@ export class LoginComponent implements OnInit {
               this.snakBar.open('Please check your email for password reset link.',
                         null,
                         { duration: 1500 })
-              );
+              , ignored => 
+              this.snakBar.open('There was an issue resetting this accounts password. Maybe that user doesn\'t exist', null, { duration: 1500 }));
     }
   }
 

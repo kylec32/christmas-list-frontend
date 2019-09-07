@@ -1,27 +1,29 @@
-import { Component, Output, EventEmitter } from '@angular/core';
-import { LinkerService } from '../../services/linker.service';
+import { Component, OnInit } from '@angular/core';
+import { MatDialogRef } from '@angular/material';
 import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
 import { Follower } from '../interfaces/follower';
-import 'rxjs/Rx';
+import { LinkerService } from '../../services/linker.service';
 import { tap } from 'rxjs/operators';
 import { Observable } from 'rxjs/Rx';
 
 @Component({
-  selector: 'app-follow-finder',
-  templateUrl: './follow-finder.component.html',
-  styleUrls: ['./follow-finder.component.css']
+  selector: 'app-follow-new-dialog',
+  templateUrl: './follow-new-dialog.component.html',
+  styleUrls: ['./follow-new-dialog.component.css']
 })
-export class FollowFinderComponent {
+export class FollowNewDialogComponent implements OnInit{
   searchList: Follower[] = [];
   searchField: FormControl;
   followForm: FormGroup;
   loading: boolean = false;
-  @Output() newFolloweeSelected = new EventEmitter<Follower>();
 
-  constructor(private linkerService: LinkerService,
-              private fb:FormBuilder) {
+  constructor(private dialogRef: MatDialogRef<FollowNewDialogComponent>,
+    private linkerService: LinkerService,
+    private fb:FormBuilder) { }
+
+  ngOnInit() {
     this.searchField = new FormControl();
-    this.followForm = fb.group({search: this.searchField});
+    this.followForm = this.fb.group({search: this.searchField});
 
     this.searchField
               .valueChanges
@@ -48,11 +50,16 @@ export class FollowFinderComponent {
 
   followWithEmail(user: Follower): void {
     this.searchList = [];
-    this.newFolloweeSelected.emit(user);
     this.searchField.setValue('');
+    this.dialogRef.close({cancelled: false, follower: user});
   }
 
   noResults(): boolean {
     return this.searchList.length == 0 && !this.loading && this.searchField.value != undefined && this.searchField.value.length > 0;
   }
+
+  done() {
+    this.dialogRef.close({cancelled: true});
+  }
+
 }

@@ -7,6 +7,7 @@ import { FollowerListComponent } from './follower-list/follower-list.component';
 import { FolloweePresentListComponent } from './followee-present-list/followee-present-list.component';
 import { MyPresentsListComponent } from './my-presents-list/my-presents-list.component';
 import { SaveEditPresentDialogComponent } from './save-edit-present-dialog/save-edit-present-dialog.component';
+import { FollowNewDialogComponent } from './follow-new-dialog/follow-new-dialog.component'
 
 @NgModule({
   imports: [
@@ -19,9 +20,11 @@ import { SaveEditPresentDialogComponent } from './save-edit-present-dialog/save-
     FolloweePresentListComponent,
     MyPresentsListComponent,
     SaveEditPresentDialogComponent,
+    FollowNewDialogComponent,
   ],
   entryComponents: [
-    SaveEditPresentDialogComponent
+    SaveEditPresentDialogComponent,
+    FollowNewDialogComponent
   ],
   exports: [
     FollowFinderComponent,

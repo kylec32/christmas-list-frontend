@@ -11,6 +11,10 @@
     opacity: 1;
 }
 
+.fill {
+    flex: 1;
+  }
+
 .clickable {
     cursor: pointer;
 }

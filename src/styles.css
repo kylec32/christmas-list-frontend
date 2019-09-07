@@ -36,6 +36,10 @@ body {
     margin-left: 0px !important;
 }
 
+.all-column-width {
+    grid-column: span 2;
+}
+
 @media (max-width: 800px) {
     .wrapper {
         display: grid;
@@ -58,5 +62,9 @@ body {
 
     .center-card {
         width:80%;
+    }
+
+    .all-column-width {
+        grid-column: span 1;
     }
 }

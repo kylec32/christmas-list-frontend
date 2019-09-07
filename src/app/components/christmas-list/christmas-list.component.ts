@@ -45,7 +45,7 @@ export class ChristmasListComponent implements OnInit {
             , null
             , { duration: 2000 });
 
-            setTimeout(() => this.loadFollowing(), 1000);
+            setTimeout(() => this.loadFollowing(), 2000);
           }, (error) => {
             this.loadFollowing();
             this.snakBar.open(`Couldn't find account for: ${follower.userName}`, null, {

@@ -1,12 +1,10 @@
 <div class="wrapper">
-  <app-follow-finder class="upper-right-desktop my-content" (newFolloweeSelected)="connectWithFollower($event)"></app-follow-finder>
-
-  <app-follower-list class="bottom-right-desktop my-content" [following]="following" (onDelete)="removeFollower($event)"></app-follower-list>
+  <app-follower-list class="upper-right-desktop my-content" [following]="following" (onDelete)="removeFollower($event)" (newFolloweeSelected)="connectWithFollower($event)"></app-follower-list>
 
   <app-my-presents-list class="center my-content">
   </app-my-presents-list>
 
-  <div class="center my-content">
+  <div class="center my-content all-column-width">
     <div *ngFor="let followee of followerPresents | async">
         <app-followee-present-list class="center my-content" [followeeWithPresents]="followee" (onMarkAsPurchased)="markAsPurchased($event)" (onUnmarkAsPurchased)="unmarkAsPurchased($event)"></app-followee-present-list>
     </div>

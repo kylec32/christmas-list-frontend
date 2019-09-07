@@ -1,6 +1,13 @@
 <mat-card>
     <mat-card-header (click)="toggleVisible()">
           <mat-card-title><b>Following:</b></mat-card-title>
+          <div class="fill"></div>
+          <div>
+            <button mat-raised-button color="primary" style="margin-left:auto" (click)="openNewFollowerDialog($event)">
+              New
+            </button>
+          </div>
+          &nbsp;
           <div class="clickable">
             <i class="fas fa-chevron-down" *ngIf="!expanded"></i>
             <i class="fas fa-chevron-up" *ngIf="expanded"></i>
