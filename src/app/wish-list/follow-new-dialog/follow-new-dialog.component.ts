@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialogRef } from '@angular/material';
+import { MatDialogRef } from '@angular/material/dialog';
 import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
 import { Follower } from '../interfaces/follower';
 import { LinkerService } from '../../services/linker.service';
