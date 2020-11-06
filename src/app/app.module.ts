@@ -44,13 +44,9 @@ import { AppRoutingModule } from './routing.module';
     WelcomeComponent,
     ToolbarWrapperComponent
   ],
-  imports: [AppRoutingModule,
-    StoreModule.forRoot({ token, following, mypresents, presents }),
-    StoreDevtoolsModule.instrument({
-      maxAge: 25, // Retains last 25 states
-      logOnly: environment.production,
-    }),
+  imports: [
     BrowserModule,
+    AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
     RecaptchaModule.forRoot(),
