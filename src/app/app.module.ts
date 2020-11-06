@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { RouterModule, Routes } from '@angular/router'
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -31,21 +31,7 @@ import { ForgottenPasswordComponent } from './components/forgotten-password/forg
 import { SharedModule } from './shared/shared.module';
 import { WelcomeComponent } from './components/welcome/welcome.component';
 import { ToolbarWrapperComponent } from './components/toolbar-wrapper/toolbar-wrapper.component';
-
-const appRoutes: Routes = [
-  { path: '', component: WelcomeComponent },
-  { path: '', component: ToolbarWrapperComponent,
-  children: [
-    { path: 'login', component: LoginComponent },
-    { path: 'signup', component: SignupComponent },
-    { path: 'reset/:email/:token', component: ForgottenPasswordComponent },
-    { path: 'list',
-      component: ChristmasListComponent, 
-      canActivate: [CanActivateViaAuthGuard]
-    }
-  ]},
-  { path: '**', component: WelcomeComponent}
-];
+import { AppRoutingModule } from './routing.module';
 
 
 @NgModule({
@@ -58,10 +44,7 @@ const appRoutes: Routes = [
     WelcomeComponent,
     ToolbarWrapperComponent
   ],
-  imports: [RouterModule.forRoot(
-      appRoutes
-      //,{ enableTracing: true } // <-- debugging purposes only
-    ),
+  imports: [AppRoutingModule,
     StoreModule.forRoot({ token, following, mypresents, presents }),
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
