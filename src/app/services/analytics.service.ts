@@ -11,7 +11,7 @@ export class AnalyticsService {
   sendEvent(action: string, value: string = "") {
     try {
         if (typeof window.umami != 'undefined') {
-            window.umami.trackEvent(`${value}`, action)
+            window.umami.trackEvent(action, `${value}`)
         }
     } catch (e) {
         console.error(e);
